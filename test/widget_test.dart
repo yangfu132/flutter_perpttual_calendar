@@ -8,7 +8,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:flutter_perpttual_calendar/main.dart';
+import 'package:flutter_perpttual_calendar/flutter_perpttual_calendar.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
