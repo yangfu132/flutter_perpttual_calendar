@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'src/UI/PerpttualCalendarWidget.dart';
+import 'src/UI/PCUSelectDateRoute.dart';
 
 void main() {
   runApp(MyApp());
@@ -73,11 +74,6 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
@@ -107,8 +103,12 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             PerpttualCalendarWidget(),
             FlatButton(
-              onPressed: () {},
-              child: Text('data'),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return PCUSelectDateRoute(title: '选择日期');
+                }));
+              },
+              child: Text('选择日期'),
             )
           ],
         ),
