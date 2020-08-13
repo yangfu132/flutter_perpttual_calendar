@@ -356,4 +356,8 @@ class PWBEarthBranchModel {
 
     return result;
   }
+
+  static List<String> earthBranch() {
+    return ["子", "丑", "寅", "末", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"];
+  }
 }

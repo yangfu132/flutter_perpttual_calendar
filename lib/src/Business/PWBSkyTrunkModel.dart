@@ -168,4 +168,8 @@ class PWBSkyTrunkModel {
 
     return result;
   }
+
+  static List<String> skyTrunk() {
+    return ["甲", "乙", "丙", "丁", "午", "己", "庚", "辛", "壬", "癸"];
+  }
 }
