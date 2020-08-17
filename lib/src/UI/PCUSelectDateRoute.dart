@@ -1,11 +1,13 @@
 ﻿import 'package:flutter/material.dart';
 import '../Context/PCCGloable.dart';
-import '../Business/PWBEarthBranchModel.dart';
-import '../Business/PWBSkyTrunkModel.dart';
-import 'PCUDateButton.dart';
-import 'PCUDateTile.dart';
-import 'PCUSingleActionRoute.dart';
-import 'PCUListEntryRoute.dart';
+import '../Business/PerpttualCalendar/PWBEarthBranchModel.dart';
+import '../Business/PerpttualCalendar/PWBSkyTrunkModel.dart';
+import 'Base/PCUDateButton.dart';
+import 'Base/PCUDateTile.dart';
+import 'Base/PCUSingleActionRoute.dart';
+import 'Base/PCUListEntryRoute.dart';
+import 'PCUDialog.dart';
+import './Calendar/Calendar.dart';
 
 class PCUSelectDateRoute extends StatefulWidget {
   PCUSelectDateRoute({Key key, this.title}) : super(key: key);
@@ -41,7 +43,7 @@ class _PCUSelectDateRouteState extends State<PCUSelectDateRoute> {
                 Row(
                   children: [
                     PCUDateTile('时间：'),
-                    PCUDateButton(_strDateBtn, () {}),
+                    PCUDateButton(_strDateBtn, () => _onCalendarClick(context)),
                   ],
                 ),
                 Row(
@@ -69,9 +71,51 @@ class _PCUSelectDateRouteState extends State<PCUSelectDateRoute> {
                   color: Color(int.parse(const_color_label)),
                   fontSize: 13 * _screenScale),
             ),
-          )
+          ),
         ],
       ),
+    );
+  }
+
+  Future<T> showCustomDialog<T>({
+    @required BuildContext context,
+    bool barrierDismissible = true,
+    WidgetBuilder builder,
+  }) {
+    final ThemeData theme = Theme.of(context, shadowThemeOnly: true);
+    return showGeneralDialog(
+      context: context,
+      pageBuilder: (BuildContext buildContext, Animation<double> animation,
+          Animation<double> secondaryAnimation) {
+        final Widget pageChild = Builder(builder: builder);
+        return SafeArea(
+          child: Builder(builder: (BuildContext context) {
+            return theme != null
+                ? Theme(data: theme, child: pageChild)
+                : pageChild;
+          }),
+        );
+      },
+      barrierDismissible: barrierDismissible,
+      barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
+      barrierColor: Colors.black87, // 自定义遮罩颜色
+      transitionDuration: const Duration(milliseconds: 150),
+      transitionBuilder: _buildMaterialDialogTransitions,
+    );
+  }
+
+  Widget _buildMaterialDialogTransitions(
+      BuildContext context,
+      Animation<double> animation,
+      Animation<double> secondaryAnimation,
+      Widget child) {
+    // 使用缩放动画
+    return ScaleTransition(
+      scale: CurvedAnimation(
+        parent: animation,
+        curve: Curves.easeOut,
+      ),
+      child: child,
     );
   }
 
@@ -83,6 +127,20 @@ class _PCUSelectDateRouteState extends State<PCUSelectDateRoute> {
       _strDaySkyBtn = '请选择日之天干';
       _strDayEarthBtn = '请选择日之地支';
     });
+  }
+
+  void _onCalendarClick(context) {
+    showCustomDialog<bool>(
+      context: context,
+      builder: (context) {
+        return Dialog(
+            child: Calendar(
+          firstTime: DateTime.now(),
+          initTime: DateTime.now(),
+          endTime: DateTime.now(),
+        ));
+      },
+    );
   }
 
   void _onMonthSkyClicked() async {

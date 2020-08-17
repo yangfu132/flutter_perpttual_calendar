@@ -33,6 +33,13 @@ class PWBCalendarBusiness {
     return "${lunar.lunarYear.toString()}-${lunar.lunarMonth.toString().padLeft(2, '0')}-${lunar.lunarDay.toString().padLeft(2, '0')} ${this.theDate.hour.toString().padLeft(2, '0')}:${this.theDate.minute.toString().padLeft(2, '0')}:${this.theDate.second.toString().padLeft(2, '0')}";
   }
 
+  static String lunarForSolarYear(DateTime date) {
+    Solar solar =
+        Solar(solarYear: date.year, solarMonth: date.month, solarDay: date.day);
+    Lunar lunar = LunarSolarConverter.solarToLunar(solar);
+    return "${lunar.lunarMonth.toString().padLeft(2, '0')}-${lunar.lunarDay.toString().padLeft(2, '0')}";
+  }
+
 //通过公历获取属性---------------------------------------------------------------
 
   //方法注释：年干

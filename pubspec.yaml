@@ -25,6 +25,8 @@ dependencies:
     sdk: flutter
 
   lunar_calendar_converter: ^1.0.4+1
+  #date_util: ^0.1.4
+  intl: ^0.16.1
 
 
   # The following adds the Cupertino Icons font to your application.
