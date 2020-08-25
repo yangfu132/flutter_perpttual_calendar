@@ -14,7 +14,7 @@ import 'package:flutter/src/rendering/sliver.dart';
 class PCUCalendarWidget extends StatefulWidget {
   PCUCalendarWidget({this.onChange, this.selectDate});
   final WHUCalendarCal calendarBusiness = WHUCalendarCal();
-  final ValueChanged onChange;
+  final ValueChanged<WHUCalendarItem> onChange;
   final DateTime selectDate;
 
   @override
@@ -43,8 +43,8 @@ class _PCUCalendarWidgetState extends State<PCUCalendarWidget> {
     if (null != _dataDic) days = _dataDic['dataArr'];
     List dayWidgets = days.map((value) {
       PCUCalendarCell cell = PCUCalendarCell(widgetHeight);
-      cell.rowIndex = 1;
-      cell.total = days.length;
+      // cell.rowIndex = 1;
+      // cell.total = days.length;
       WHUCalendarItem dateItem = value as WHUCalendarItem;
       if (null != dateItem.holiday)
         cell.dbl = dateItem.holiday;
@@ -63,22 +63,19 @@ class _PCUCalendarWidgetState extends State<PCUCalendarWidget> {
         cell.lbl = '${dateItem.day}';
         cell.isDayInCurMonth = true;
       }
+      cell.dateItem = dateItem;
+      cell.onChange = widget.onChange;
       return cell;
     }).toList();
     return dayWidgets;
   }
 
-  @override
-  Widget build(BuildContext context) {
+  Widget getWidget(BuildContext context) {
     double gridWidget = PCCContext.scale(300, context);
     double itemHeight = gridWidget / 7;
     List list = dayItems(itemHeight);
     int nRowCount = list.length > 35 ? 6 : 5;
     return Container(
-      // decoration: BoxDecoration(
-      //   border: Border.all(color: Colors.grey, width: 1),
-      //   color: Colors.grey,
-      // ),
       height: gridWidget + 1 + 10 + 100,
       width: gridWidget + 1 + 30,
       child: Column(
@@ -142,6 +139,11 @@ class _PCUCalendarWidgetState extends State<PCUCalendarWidget> {
       ),
     );
   }
+
+  @override
+  Widget build(BuildContext context) {
+    return getWidget(context);
+  }
 }
 
 /// 自定义GridView
@@ -155,13 +157,11 @@ class _DayPickerGridDelegate extends SliverGridDelegate {
   @override
   SliverGridLayout getLayout(SliverConstraints constraints) {
     const int columnCount = DateTime.daysPerWeek;
-    // final double tileWidth = constraints.crossAxisExtent / columnCount;
-    // final double tileHeight = widgetHeight / columnCount;
     return SliverGridRegularTileLayout(
       crossAxisCount: columnCount,
-      mainAxisStride: widgetHeight, //tileHeight,
+      mainAxisStride: widgetHeight,
       crossAxisStride: widgetHeight,
-      childMainAxisExtent: widgetHeight - 1, //tileHeight - 0.5,
+      childMainAxisExtent: widgetHeight - 1,
       childCrossAxisExtent: widgetHeight - 1,
       reverseCrossAxis: axisDirectionIsReversed(constraints.crossAxisDirection),
     );

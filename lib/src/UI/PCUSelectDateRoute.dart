@@ -1,5 +1,4 @@
 ﻿import 'package:flutter/material.dart';
-import '../Context/PCCGloable.dart';
 import '../Business/PerpttualCalendar/PWBEarthBranchModel.dart';
 import '../Business/PerpttualCalendar/PWBSkyTrunkModel.dart';
 import 'Base/PCUDateButton.dart';
@@ -7,9 +6,9 @@ import 'Base/PCUDateTile.dart';
 import 'Base/PCUSingleActionRoute.dart';
 import 'Base/PCUListEntryRoute.dart';
 import 'Base/PCUInfoWidget.dart';
-import 'PCUDialog.dart';
 import './Calendar/Calendar.dart';
 import 'Calendar/PCUCalendarWidget.dart';
+import '../Business/Calendar/WHUCalendarItem.dart';
 
 class PCUSelectDateRoute extends StatefulWidget {
   PCUSelectDateRoute({Key key, this.title}) : super(key: key);
@@ -141,7 +140,10 @@ class _PCUSelectDateRouteState extends State<PCUSelectDateRoute> {
     showCustomDialog<bool>(
       context: context,
       builder: (context) {
-        return Dialog(child: PCUCalendarWidget());
+        return Dialog(
+            child: PCUCalendarWidget(
+          onChange: _onChnage,
+        ));
         // return Dialog(
         //     child: Calendar(
         //   firstTime: DateTime.now(),
@@ -150,6 +152,48 @@ class _PCUSelectDateRouteState extends State<PCUSelectDateRoute> {
         // ));
       },
     );
+  }
+
+  void _onChnage(WHUCalendarItem dateItem) {
+    print('dateItem:${dateItem.dateStr}');
+
+    // NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    // [format setDateFormat:@"yyyy年  MM月  dd日"];
+    // NSString *dateString = [format stringFromDate:date];
+    // NSLog(@"%@",dateString);
+
+    // [weakBtnTime setTitle:dateString forState:UIControlStateNormal];
+    _strDateBtn = dateItem.dateStr;
+    // [weakBtnTime setTitleColor:color
+    //                   forState:UIControlStateNormal];
+    // weakBtnTime.titleLabel.textAlignment = NSTextAlignmentCenter;
+
+    // EightWordCalendar* wordCalendar = [[EightWordCalendar alloc] initWithDate:date];
+
+    // [weakBtnDaySky setTitle: [[wordCalendar dayTrunk] stringName]
+    //                forState:UIControlStateNormal];
+    // [weakBtnDaySky setTitleColor:[UIColor lightGrayColor]
+    //                   forState:UIControlStateNormal];
+    // [weakBtnDaySky setEnabled:NO];
+
+    // [weakBtnDayEarth setTitle: [[wordCalendar 日支] stringName]
+    //                forState:UIControlStateNormal];
+    // [weakBtnDayEarth setTitleColor:[UIColor lightGrayColor]
+    //                     forState:UIControlStateNormal];
+    // [weakBtnDayEarth setEnabled:NO];
+
+    // [weakBtnMonthSky setTitle: [[wordCalendar 月干] stringName]
+    //                  forState:UIControlStateNormal];
+    // [weakBtnMonthSky setTitleColor:[UIColor lightGrayColor]
+    //                       forState:UIControlStateNormal];
+    // [weakBtnMonthSky setEnabled:NO];
+
+    // [weakBtnMonthEarth setTitle: [[wordCalendar 月支] stringName]
+    //                  forState:UIControlStateNormal];
+    // [weakBtnMonthEarth setTitleColor:[UIColor lightGrayColor]
+    //                       forState:UIControlStateNormal];
+    // [weakBtnMonthEarth setEnabled:NO];
+    setState(() {});
   }
 
   void _onMonthSkyClicked() async {

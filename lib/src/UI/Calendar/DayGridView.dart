@@ -84,11 +84,12 @@ class _DayGridViewState extends State<DayGridView> {
             /// 在今天之后的时间无法点击
             return GestureDetector(
               child: Container(
-                  alignment: Alignment.center,
-                  child: Text(
-                    value.day.toString(),
-                    style: TextStyle(color: Colors.black38),
-                  )),
+                alignment: Alignment.center,
+                child: Text(
+                  value.day.toString(),
+                  style: TextStyle(color: Colors.black38),
+                ),
+              ),
             );
           } else {
             /// 在今天之前的时间可以点击

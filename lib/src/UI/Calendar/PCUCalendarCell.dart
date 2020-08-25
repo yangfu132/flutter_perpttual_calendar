@@ -1,7 +1,8 @@
 ﻿import 'package:flutter/material.dart';
 import '../../Context/PCCGloable.dart';
-import 'PCUTriangleWidget.dart';
+import '../Base/PCUTriangleWidget.dart';
 import '../../Context/PCCContext.dart';
+import '../../Business/Calendar/WHUCalendarItem.dart';
 
 class PCUCalendarCell extends StatefulWidget {
   PCUCalendarCell(this.widgetHeight);
@@ -9,10 +10,12 @@ class PCUCalendarCell extends StatefulWidget {
   String dbl;
   bool isToday;
   bool isDayInCurMonth;
-  int rowIndex;
-  int total;
   bool isHighlighted = false;
+  WHUCalendarItem dateItem;
   final double widgetHeight;
+
+  ValueChanged<WHUCalendarItem> onChange;
+
   @override
   State<PCUCalendarCell> createState() {
     return _PCUCalendarCellState();
@@ -38,8 +41,7 @@ class _PCUCalendarCellState extends State<PCUCalendarCell> {
     return colorText;
   }
 
-  @override
-  Widget build(BuildContext context) {
+  Widget getWiget(BuildContext context) {
     return Container(
       color: widget.isHighlighted ? colorHighlight : Colors.white,
       child: Padding(
@@ -119,6 +121,17 @@ class _PCUCalendarCellState extends State<PCUCalendarCell> {
           ),
         ),
       ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        widget.onChange(widget.dateItem);
+        Navigator.of(context).pop();
+      },
+      child: getWiget(context),
     );
   }
 }
