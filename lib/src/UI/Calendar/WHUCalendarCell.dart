@@ -85,25 +85,31 @@ class WHUCalendarCellState extends State<WHUCalendarCell> {
                   height: widget.isToday ? widget.widgetHeight / 2 : 0,
                   child: Column(children: [
                     Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        '今',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                            color: getTextColor(),
-                            fontSize: PCCContext.scale(6, context),
-                            fontWeight: FontWeight.bold),
+                      alignment: Alignment.bottomCenter,
+                      child: SizedBox(
+                        height: widget.widgetHeight / 5 - 3,
+                        child: Text(
+                          '今',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                              color: getTextColor(),
+                              fontSize: PCCContext.scale(6, context),
+                              fontWeight: FontWeight.bold),
+                        ),
                       ),
                     ),
                     Align(
-                      alignment: Alignment.centerRight,
-                      child: Text(
-                        '天 ',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                            color: getTextColor(),
-                            fontSize: PCCContext.scale(6, context),
-                            fontWeight: FontWeight.bold),
+                      alignment: Alignment.topRight,
+                      child: Padding(
+                        padding: EdgeInsets.only(right: 1),
+                        child: Text(
+                          '天',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                              color: getTextColor(),
+                              fontSize: PCCContext.scale(6, context),
+                              fontWeight: FontWeight.bold),
+                        ),
                       ),
                     ),
                   ]),

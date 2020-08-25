@@ -79,7 +79,7 @@ class _WHUCalendarViewState extends State<WHUCalendarView> {
       //   border: Border.all(color: Colors.grey, width: 1),
       //   color: Colors.grey,
       // ),
-      height: gridWidget + 1 + 10 + 110,
+      height: gridWidget + 1 + 10 + 100,
       width: gridWidget + 1 + 30,
       child: Column(
         children: [
