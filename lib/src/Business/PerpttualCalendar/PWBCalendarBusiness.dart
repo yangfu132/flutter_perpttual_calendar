@@ -19,7 +19,7 @@ class PWBCalendarBusiness {
   List<PWBSolarTermModel> solarTerms;
 
 // 公曆
-  String gregorianDateString() {
+  String stringFromDate() {
     return "${this.theDate.year.toString()}-${this.theDate.month.toString().padLeft(2, '0')}-${this.theDate.day.toString().padLeft(2, '0')} ${this.theDate.hour.toString().padLeft(2, '0')}:${this.theDate.minute.toString().padLeft(2, '0')}:${this.theDate.second.toString().padLeft(2, '0')}";
   }
 
@@ -305,7 +305,7 @@ class PWBCalendarBusiness {
 
   // 計算當月節氣日期
   List<PWBSolarTermModel> computeSolarTerm(int month) {
-    List<PWBSolarTermModel> result;
+    List<PWBSolarTermModel> result = [];
     for (int n = (month * 2 - 1); n <= month * 2; n++) {
       double termDays = term(this.theDate.year, n, true);
       int mdays = antiDayDifference(this.theDate.year, termDays.toInt());
@@ -320,8 +320,9 @@ class PWBCalendarBusiness {
         result.add(PWBSolarTermModel(
             PWBSolarTermModel.solarterms()[n + 21], termDate));
       } else {
-        result.add(
-            PWBSolarTermModel(PWBSolarTermModel.solarterms()[n - 3], termDate));
+        PWBSolarTermModel model =
+            PWBSolarTermModel(PWBSolarTermModel.solarterms()[n - 3], termDate);
+        result.add(model);
       }
     }
     return result;

@@ -9,6 +9,8 @@ import 'Base/PCUInfoWidget.dart';
 import './Calendar/Calendar.dart';
 import 'Calendar/PCUCalendarWidget.dart';
 import '../Business/Calendar/WHUCalendarItem.dart';
+import '../Service/PWSDateTimeService.dart';
+import '../Business/PerpttualCalendar/PWBCalendarBusiness.dart';
 
 class PCUSelectDateRoute extends StatefulWidget {
   PCUSelectDateRoute({Key key, this.title}) : super(key: key);
@@ -156,43 +158,21 @@ class _PCUSelectDateRouteState extends State<PCUSelectDateRoute> {
 
   void _onChnage(WHUCalendarItem dateItem) {
     print('dateItem:${dateItem.dateStr}');
+    DateTime dateTime = PWSDateTimeService.dateFromString(dateItem.dateStr);
 
-    // NSDateFormatter *format = [[NSDateFormatter alloc] init];
-    // [format setDateFormat:@"yyyy年  MM月  dd日"];
-    // NSString *dateString = [format stringFromDate:date];
-    // NSLog(@"%@",dateString);
+    _strDateBtn =
+        PWSDateTimeService.stringFromDate(dateTime, "yyyy年  MM月  dd日");
 
-    // [weakBtnTime setTitle:dateString forState:UIControlStateNormal];
-    _strDateBtn = dateItem.dateStr;
-    // [weakBtnTime setTitleColor:color
-    //                   forState:UIControlStateNormal];
-    // weakBtnTime.titleLabel.textAlignment = NSTextAlignmentCenter;
+    PWBCalendarBusiness business = PWBCalendarBusiness(dateTime);
 
-    // EightWordCalendar* wordCalendar = [[EightWordCalendar alloc] initWithDate:date];
+    _strMonthSkyBtn = business.skyTrunkMonth().stringName();
 
-    // [weakBtnDaySky setTitle: [[wordCalendar dayTrunk] stringName]
-    //                forState:UIControlStateNormal];
-    // [weakBtnDaySky setTitleColor:[UIColor lightGrayColor]
-    //                   forState:UIControlStateNormal];
-    // [weakBtnDaySky setEnabled:NO];
+    _strMonthEarthBtn = business.earthBranchMonth().stringName();
 
-    // [weakBtnDayEarth setTitle: [[wordCalendar 日支] stringName]
-    //                forState:UIControlStateNormal];
-    // [weakBtnDayEarth setTitleColor:[UIColor lightGrayColor]
-    //                     forState:UIControlStateNormal];
-    // [weakBtnDayEarth setEnabled:NO];
+    _strDaySkyBtn = business.skyTrunkDay().stringName();
 
-    // [weakBtnMonthSky setTitle: [[wordCalendar 月干] stringName]
-    //                  forState:UIControlStateNormal];
-    // [weakBtnMonthSky setTitleColor:[UIColor lightGrayColor]
-    //                       forState:UIControlStateNormal];
-    // [weakBtnMonthSky setEnabled:NO];
+    _strDayEarthBtn = business.earthBranchDay().stringName();
 
-    // [weakBtnMonthEarth setTitle: [[wordCalendar 月支] stringName]
-    //                  forState:UIControlStateNormal];
-    // [weakBtnMonthEarth setTitleColor:[UIColor lightGrayColor]
-    //                       forState:UIControlStateNormal];
-    // [weakBtnMonthEarth setEnabled:NO];
     setState(() {});
   }
 

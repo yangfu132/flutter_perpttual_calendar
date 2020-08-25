@@ -12,14 +12,14 @@ class WHUCalendarCal {
   String currentDateStr() {
     if (null == curDateStr) {
       this.curDateStr =
-          PWSDateTimeService.gregorianDateString(DateTime.now(), 'yyyy-MM-dd');
+          PWSDateTimeService.stringFromDate(DateTime.now(), 'yyyy-MM-dd');
     }
     return this.curDateStr;
   }
 
   Map loadDataWith(String dateStr) {
     this._currentCalMap =
-        calendarMapWith(PWSDateTimeService.dateFromMonthString(dateStr));
+        calendarMapWith(PWSDateTimeService.dateFromString(dateStr));
     if (this._preCalMap == null) {
       this._preCalMap = getPreCalendarMap(dateStr);
     }
@@ -59,7 +59,7 @@ class WHUCalendarCal {
         completeBlk(this._currentCalMap);
       } else {
         this._currentCalMap =
-            calendarMapWith(PWSDateTimeService.dateFromMonthString(dateStr));
+            calendarMapWith(PWSDateTimeService.dateFromString(dateStr));
         completeBlk(this._currentCalMap);
       }
       this._nextCalMap = null;
@@ -88,21 +88,19 @@ class WHUCalendarCal {
         DateTime theDate =
             firstDayOfMonth.add(new Duration(days: -weekGap + i));
         WHUCalendarItem item = WHUCalendarItem();
-        item.dateStr =
-            PWSDateTimeService.gregorianDateString(theDate, 'yyyy-MM-dd');
+        item.dateStr = PWSDateTimeService.stringFromDate(theDate, 'yyyy-MM-dd');
         item.day = -theDate.day;
         lunarForSolarYear(item, theDate);
         dateArr.add(item);
       }
     }
     //将本月的所有天数变为文本
-    mdic['monthStr'] = PWSDateTimeService.gregorianDateString(date, 'yyyy年MM月');
+    mdic['monthStr'] = PWSDateTimeService.stringFromDate(date, 'yyyy年MM月');
     int days = getDaysInMonth(date.year, date.month);
     for (int i = 0; i < days; i++) {
       WHUCalendarItem item = WHUCalendarItem();
       DateTime theDate = firstDayOfMonth.add(new Duration(days: i));
-      item.dateStr =
-          PWSDateTimeService.gregorianDateString(theDate, 'yyyy-MM-dd');
+      item.dateStr = PWSDateTimeService.stringFromDate(theDate, 'yyyy-MM-dd');
       item.day = theDate.day;
       lunarForSolarYear(item, theDate);
       dateArr.add(item);
@@ -116,8 +114,7 @@ class WHUCalendarCal {
       for (int i = 1; i < weekGap; i++) {
         DateTime theDate = firstDayOfMonth.add(new Duration(days: i));
         WHUCalendarItem item = WHUCalendarItem();
-        item.dateStr =
-            PWSDateTimeService.gregorianDateString(theDate, 'yyyy-MM-dd');
+        item.dateStr = PWSDateTimeService.stringFromDate(theDate, 'yyyy-MM-dd');
         item.day = -i;
         lunarForSolarYear(item, theDate);
         dateArr.add(item);
@@ -143,25 +140,25 @@ class WHUCalendarCal {
   }
 
   Map getPreCalendarMap(String dateStr) {
-    DateTime date = PWSDateTimeService.dateFromMonthString(dateStr);
+    DateTime date = PWSDateTimeService.dateFromString(dateStr);
     return calendarMapWith(getPreMonth(date));
   }
 
   Map getNextCalendarMap(String dateStr) {
-    DateTime date = PWSDateTimeService.dateFromMonthString(dateStr);
+    DateTime date = PWSDateTimeService.dateFromString(dateStr);
     return calendarMapWith(getLastMonth(date));
   }
 
   String preMonthOfMonthString(String dateStr) {
-    DateTime date = PWSDateTimeService.dateFromMonthString(dateStr);
+    DateTime date = PWSDateTimeService.dateFromString(dateStr);
     DateTime preDate = getPreMonth(date);
-    return PWSDateTimeService.gregorianDateString(preDate, 'yyyy年MM月');
+    return PWSDateTimeService.stringFromDate(preDate, 'yyyy年MM月');
   }
 
   String nextMonthOfMonthString(String dateStr) {
-    DateTime date = PWSDateTimeService.dateFromMonthString(dateStr);
+    DateTime date = PWSDateTimeService.dateFromString(dateStr);
     DateTime preDate = getLastMonth(date);
-    return PWSDateTimeService.gregorianDateString(preDate, 'yyyy年MM月');
+    return PWSDateTimeService.stringFromDate(preDate, 'yyyy年MM月');
   }
 
   lunarForSolarYear(WHUCalendarItem calendarDay, DateTime theDate) {
