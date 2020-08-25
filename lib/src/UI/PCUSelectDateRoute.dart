@@ -6,8 +6,10 @@ import 'Base/PCUDateButton.dart';
 import 'Base/PCUDateTile.dart';
 import 'Base/PCUSingleActionRoute.dart';
 import 'Base/PCUListEntryRoute.dart';
+import 'Base/PCUInfoWidget.dart';
 import 'PCUDialog.dart';
 import './Calendar/Calendar.dart';
+import './Calendar/WHUCalendarView.dart';
 
 class PCUSelectDateRoute extends StatefulWidget {
   PCUSelectDateRoute({Key key, this.title}) : super(key: key);
@@ -60,17 +62,25 @@ class _PCUSelectDateRouteState extends State<PCUSelectDateRoute> {
                     PCUDateButton(_strDayEarthBtn, _onDayEarthClicked),
                   ],
                 ),
+                PCUDateButton(_strMonthSkyBtn, () {
+                  showCustomDialog<bool>(
+                    context: context,
+                    builder: (context) {
+                      return Dialog(
+                          child: Calendar(
+                        firstTime: DateTime.now(),
+                        initTime: DateTime.now(),
+                        endTime: DateTime.now(),
+                      ));
+                    },
+                  );
+                }),
               ],
             ),
           ),
           Padding(
             padding: EdgeInsets.only(top: 21),
-            child: Text(
-              '如果没有设置，会默认为当前日期。',
-              style: TextStyle(
-                  color: Color(int.parse(const_color_label)),
-                  fontSize: 13 * _screenScale),
-            ),
+            child: PCUInfoWidget('如果没有设置，会默认为当前日期。'),
           ),
         ],
       ),
@@ -133,12 +143,13 @@ class _PCUSelectDateRouteState extends State<PCUSelectDateRoute> {
     showCustomDialog<bool>(
       context: context,
       builder: (context) {
-        return Dialog(
-            child: Calendar(
-          firstTime: DateTime.now(),
-          initTime: DateTime.now(),
-          endTime: DateTime.now(),
-        ));
+        return Dialog(child: WHUCalendarView());
+        // return Dialog(
+        //     child: Calendar(
+        //   firstTime: DateTime.now(),
+        //   initTime: DateTime.now(),
+        //   endTime: DateTime.now(),
+        // ));
       },
     );
   }

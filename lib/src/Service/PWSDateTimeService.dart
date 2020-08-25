@@ -2,13 +2,13 @@
 
 class PWSDateTimeService {
   static String gregorianDateString(DateTime theDate, String formatStr) {
-    if ('YYYY-MM-DD HH:mm:ss' == formatStr) {
+    if ('yyyy-MM-dd HH:mm:ss' == formatStr) {
       return "${theDate.year.toString()}-${theDate.month.toString().padLeft(2, '0')}-${theDate.day.toString().padLeft(2, '0')} ${theDate.hour.toString().padLeft(2, '0')}:${theDate.minute.toString().padLeft(2, '0')}:${theDate.second.toString().padLeft(2, '0')}";
-    } else if ('YYYY-MM-DD' == formatStr) {
+    } else if ('yyyy-MM-dd' == formatStr) {
       return "${theDate.year.toString()}-${theDate.month.toString().padLeft(2, '0')}-${theDate.day.toString().padLeft(2, '0')}";
-    } else if ('YYYY年MM月DD' == formatStr) {
+    } else if ('yyyy年MM月dd' == formatStr) {
       return "${theDate.year.toString()}年${theDate.month.toString().padLeft(2, '0')}月${theDate.day.toString().padLeft(2, '0')}";
-    } else if ('YYYY年MM月' == formatStr) {
+    } else if ('yyyy年MM月' == formatStr) {
       return "${theDate.year.toString()}年${theDate.month.toString().padLeft(2, '0')}月";
     } else
       return '';
@@ -20,7 +20,7 @@ class PWSDateTimeService {
     // [format setDateFormat:@"yyyy年MM月dd"];
     // NSDate* date=[format dateFromString:dateStr];
     // return date;
-    return DateFormat('yyyy年MM月dd').parse(dateStr);
+    return DateFormat('yyyy-MM-dd').parse(dateStr);
   }
 
   static DateTime dateFromString(String dateString) {

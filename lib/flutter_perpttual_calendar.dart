@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'src/UI/PerpttualCalendarWidget.dart';
 import 'src/UI/PCUSelectDateRoute.dart';
+import 'src/UI/Calendar/CustomWidget.dart';
 
 void main() {
   runApp(MyApp());
@@ -109,7 +110,28 @@ class _MyHomePageState extends State<MyHomePage> {
                 }));
               },
               child: Text('选择日期'),
-            )
+            ),
+            FlatButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return CustomWidget(
+                    width: MediaQuery.of(context).size.width,
+                    height: 200,
+                    child: Column(children: [
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: Text('今'),
+                      ),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: Text('天'),
+                      ),
+                    ]),
+                  );
+                }));
+              },
+              child: Text('自定义'),
+            ),
           ],
         ),
       ),

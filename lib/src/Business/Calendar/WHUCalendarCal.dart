@@ -3,16 +3,18 @@ import 'WHUCalendarItem.dart';
 import '../PerpttualCalendar/PWBCalendarBusiness.dart';
 
 class WHUCalendarCal {
-  String _curDateStr;
+  WHUCalendarCal({this.curDateStr});
+  String curDateStr;
   Map _preCalMap;
   Map _nextCalMap;
   Map _currentCalMap;
+
   String currentDateStr() {
-    if (null == _curDateStr) {
-      this._curDateStr =
-          PWSDateTimeService.gregorianDateString(DateTime.now(), 'YYYY-MM-DD');
+    if (null == curDateStr) {
+      this.curDateStr =
+          PWSDateTimeService.gregorianDateString(DateTime.now(), 'yyyy-MM-dd');
     }
-    return this._curDateStr;
+    return this.curDateStr;
   }
 
   Map loadDataWith(String dateStr) {
@@ -87,20 +89,20 @@ class WHUCalendarCal {
             firstDayOfMonth.add(new Duration(days: -weekGap + i));
         WHUCalendarItem item = WHUCalendarItem();
         item.dateStr =
-            PWSDateTimeService.gregorianDateString(theDate, 'YYYY-MM-DD');
+            PWSDateTimeService.gregorianDateString(theDate, 'yyyy-MM-dd');
         item.day = -theDate.day;
         lunarForSolarYear(item, theDate);
         dateArr.add(item);
       }
     }
     //将本月的所有天数变为文本
-    mdic['monthStr'] = PWSDateTimeService.gregorianDateString(date, 'YYYY年MM月');
+    mdic['monthStr'] = PWSDateTimeService.gregorianDateString(date, 'yyyy年MM月');
     int days = getDaysInMonth(date.year, date.month);
     for (int i = 0; i < days; i++) {
       WHUCalendarItem item = WHUCalendarItem();
       DateTime theDate = firstDayOfMonth.add(new Duration(days: i));
       item.dateStr =
-          PWSDateTimeService.gregorianDateString(theDate, 'YYYY-MM-DD');
+          PWSDateTimeService.gregorianDateString(theDate, 'yyyy-MM-dd');
       item.day = theDate.day;
       lunarForSolarYear(item, theDate);
       dateArr.add(item);
@@ -111,11 +113,11 @@ class WHUCalendarCal {
     DateTime lastDayOfMonth = getLastDayOfMonth(date);
     if (lastDayOfMonth.weekday != 7) {
       int weekGap = 8 - lastDayOfMonth.weekday;
-      for (int i = 1; i <= weekGap; i++) {
+      for (int i = 1; i < weekGap; i++) {
         DateTime theDate = firstDayOfMonth.add(new Duration(days: i));
         WHUCalendarItem item = WHUCalendarItem();
         item.dateStr =
-            PWSDateTimeService.gregorianDateString(theDate, 'YYYY-MM-DD');
+            PWSDateTimeService.gregorianDateString(theDate, 'yyyy-MM-dd');
         item.day = -i;
         lunarForSolarYear(item, theDate);
         dateArr.add(item);
@@ -153,13 +155,13 @@ class WHUCalendarCal {
   String preMonthOfMonthString(String dateStr) {
     DateTime date = PWSDateTimeService.dateFromMonthString(dateStr);
     DateTime preDate = getPreMonth(date);
-    return PWSDateTimeService.gregorianDateString(preDate, 'YYYY年MM月');
+    return PWSDateTimeService.gregorianDateString(preDate, 'yyyy年MM月');
   }
 
   String nextMonthOfMonthString(String dateStr) {
     DateTime date = PWSDateTimeService.dateFromMonthString(dateStr);
     DateTime preDate = getLastMonth(date);
-    return PWSDateTimeService.gregorianDateString(preDate, 'YYYY年MM月');
+    return PWSDateTimeService.gregorianDateString(preDate, 'yyyy年MM月');
   }
 
   lunarForSolarYear(WHUCalendarItem calendarDay, DateTime theDate) {
@@ -287,56 +289,6 @@ class WHUCalendarCal {
   }
 
 //常量--------------------------------------------------------------------------
-
-  //农历日期名
-  List _lunarDays = [
-    "初一",
-    "初二",
-    "初三",
-    "初四",
-    "初五",
-    "初六",
-    "初七",
-    "初八",
-    "初九",
-    "初十",
-    "十一",
-    "十二",
-    "十三",
-    "十四",
-    "十五",
-    "十六",
-    "十七",
-    "十八",
-    "十九",
-    "二十",
-    "廿一",
-    "廿二",
-    "廿三",
-    "廿四",
-    "廿五",
-    "廿六",
-    "廿七",
-    "廿八",
-    "廿九",
-    "三十"
-  ];
-
-  //农历月份名
-  List _lunarMonths = [
-    "正",
-    "二",
-    "三",
-    "四",
-    "五",
-    "六",
-    "七",
-    "八",
-    "九",
-    "十",
-    "十一",
-    "腊"
-  ];
 
   /// 获取这个月的天数
   static int getDaysInMonth(int year, int month) {

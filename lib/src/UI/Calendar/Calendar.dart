@@ -3,7 +3,7 @@ import 'package:flutter/rendering.dart';
 // import 'package:flutter_xiaoe/utils/ScreenUtil.dart';
 import 'package:flutter/material.dart';
 import 'TimeUtil.dart';
-import 'DayGridView.dart';
+import 'DayGridViewDemo.dart';
 import '../../Context/PCCContext.dart';
 // import 'package:flutter_xiaoe/config/Colors.dart';
 
@@ -47,7 +47,7 @@ class _CalendarState extends State<Calendar> {
     //         1));
 
     /// 当前月份处于
-    initPage = 1;
+    initPage = -1;
     // (widget.initTime.year - widget.firstTime.year == 0
     //     ? widget.initTime.month
     //     : ((widget.initTime.year - widget.firstTime.year) * 12 +
