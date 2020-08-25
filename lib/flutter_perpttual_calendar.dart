@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'src/UI/PerpttualCalendarWidget.dart';
 import 'src/UI/PCUSelectDateRoute.dart';
-import 'src/UI/Calendar/CustomWidget.dart';
+import 'src/UI/Calendar/PCUTriangleWidget.dart';
 
 void main() {
   runApp(MyApp());
@@ -114,7 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
             FlatButton(
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return CustomWidget(
+                  return PCUTriangleWidget(
                     width: MediaQuery.of(context).size.width,
                     height: 200,
                     child: Column(children: [

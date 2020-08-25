@@ -1,17 +1,17 @@
 ﻿import 'package:flutter/material.dart';
 
-class CustomWidget extends StatefulWidget {
-  CustomWidget({@required this.width, @required this.height, this.child});
+class PCUTriangleWidget extends StatefulWidget {
+  PCUTriangleWidget({@required this.width, @required this.height, this.child});
   final double width;
   final double height;
   final Widget child;
   @override
   State<StatefulWidget> createState() {
-    return _CustomWidgetState();
+    return _PCUTriangleWidgetState();
   }
 }
 
-class _CustomWidgetState extends State<CustomWidget> {
+class _PCUTriangleWidgetState extends State<PCUTriangleWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(

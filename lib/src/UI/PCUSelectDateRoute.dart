@@ -9,7 +9,7 @@ import 'Base/PCUListEntryRoute.dart';
 import 'Base/PCUInfoWidget.dart';
 import 'PCUDialog.dart';
 import './Calendar/Calendar.dart';
-import './Calendar/WHUCalendarView.dart';
+import 'Calendar/PCUCalendarWidget.dart';
 
 class PCUSelectDateRoute extends StatefulWidget {
   PCUSelectDateRoute({Key key, this.title}) : super(key: key);
@@ -28,8 +28,6 @@ class _PCUSelectDateRouteState extends State<PCUSelectDateRoute> {
 
   @override
   Widget build(BuildContext context) {
-    double _screenScale =
-        MediaQuery.of(context).size.width / const_iPhone11_width;
     return PCUSingleActionRoute(
       title: widget.title,
       strActionTitle: '重置',
@@ -143,7 +141,7 @@ class _PCUSelectDateRouteState extends State<PCUSelectDateRoute> {
     showCustomDialog<bool>(
       context: context,
       builder: (context) {
-        return Dialog(child: WHUCalendarView());
+        return Dialog(child: PCUCalendarWidget());
         // return Dialog(
         //     child: Calendar(
         //   firstTime: DateTime.now(),

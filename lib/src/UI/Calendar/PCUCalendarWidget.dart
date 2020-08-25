@@ -6,24 +6,24 @@ import '../../Business/Calendar/WHUCalendarItem.dart';
 import '../Base/PCUDateButton.dart';
 import '../Base/PCUDateTile.dart';
 import '../Base/PCUInfoWidget.dart';
-import 'WHUCalendarCell.dart';
+import 'PCUCalendarCell.dart';
 
 import 'package:flutter/src/rendering/sliver_grid.dart';
 import 'package:flutter/src/rendering/sliver.dart';
 
-class WHUCalendarView extends StatefulWidget {
-  WHUCalendarView({this.onChange, this.selectDate});
+class PCUCalendarWidget extends StatefulWidget {
+  PCUCalendarWidget({this.onChange, this.selectDate});
   final WHUCalendarCal calendarBusiness = WHUCalendarCal();
   final ValueChanged onChange;
   final DateTime selectDate;
 
   @override
   State<StatefulWidget> createState() {
-    return _WHUCalendarViewState();
+    return _PCUCalendarWidgetState();
   }
 }
 
-class _WHUCalendarViewState extends State<WHUCalendarView> {
+class _PCUCalendarWidgetState extends State<PCUCalendarWidget> {
   String _strMonth;
   String _strCurDate;
   Map _dataDic;
@@ -42,7 +42,7 @@ class _WHUCalendarViewState extends State<WHUCalendarView> {
     List days = [];
     if (null != _dataDic) days = _dataDic['dataArr'];
     List dayWidgets = days.map((value) {
-      WHUCalendarCell cell = WHUCalendarCell(widgetHeight);
+      PCUCalendarCell cell = PCUCalendarCell(widgetHeight);
       cell.rowIndex = 1;
       cell.total = days.length;
       WHUCalendarItem dateItem = value as WHUCalendarItem;

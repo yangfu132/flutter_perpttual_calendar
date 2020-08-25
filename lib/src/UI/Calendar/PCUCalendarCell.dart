@@ -1,10 +1,10 @@
 ﻿import 'package:flutter/material.dart';
 import '../../Context/PCCGloable.dart';
-import 'CustomWidget.dart';
+import 'PCUTriangleWidget.dart';
 import '../../Context/PCCContext.dart';
 
-class WHUCalendarCell extends StatefulWidget {
-  WHUCalendarCell(this.widgetHeight);
+class PCUCalendarCell extends StatefulWidget {
+  PCUCalendarCell(this.widgetHeight);
   String lbl;
   String dbl;
   bool isToday;
@@ -14,12 +14,12 @@ class WHUCalendarCell extends StatefulWidget {
   bool isHighlighted = false;
   final double widgetHeight;
   @override
-  State<WHUCalendarCell> createState() {
-    return WHUCalendarCellState();
+  State<PCUCalendarCell> createState() {
+    return _PCUCalendarCellState();
   }
 }
 
-class WHUCalendarCellState extends State<WHUCalendarCell> {
+class _PCUCalendarCellState extends State<PCUCalendarCell> {
   Color colorHighlight = Color.fromARGB(
     (0.3 * 255).toInt(),
     (0.02 * 255).toInt(),
@@ -80,7 +80,7 @@ class WHUCalendarCellState extends State<WHUCalendarCell> {
               Positioned(
                 right: 0,
                 top: 0,
-                child: CustomWidget(
+                child: PCUTriangleWidget(
                   width: widget.isToday ? widget.widgetHeight / 2 : 0,
                   height: widget.isToday ? widget.widgetHeight / 2 : 0,
                   child: Column(children: [
