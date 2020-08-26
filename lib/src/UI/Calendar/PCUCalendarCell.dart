@@ -41,89 +41,6 @@ class _PCUCalendarCellState extends State<PCUCalendarCell> {
     return colorText;
   }
 
-  Widget getWiget(BuildContext context) {
-    return Container(
-      color: widget.isHighlighted ? colorHighlight : Colors.white,
-      child: Padding(
-        padding: EdgeInsets.all(1),
-        child: Center(
-          child: Stack(
-            children: [
-              Positioned(
-                left: 0,
-                top: 10,
-                width: widget.isToday
-                    ? widget.widgetHeight / 2
-                    : widget.widgetHeight - 1,
-                height: widget.widgetHeight / 2,
-                child: Text(
-                  '${widget.lbl}',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: getTextColor(),
-                    fontSize: PCCContext.scale(13, context),
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 0,
-                top: 40,
-                width: widget.widgetHeight - 1,
-                height: widget.widgetHeight / 2,
-                child: Text(
-                  '${widget.dbl}',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: getTextColor(),
-                    fontSize: PCCContext.scale(8, context),
-                  ),
-                ),
-              ),
-              Positioned(
-                right: 0,
-                top: 0,
-                child: PCUTriangleWidget(
-                  width: widget.isToday ? widget.widgetHeight / 2 : 0,
-                  height: widget.isToday ? widget.widgetHeight / 2 : 0,
-                  child: Column(children: [
-                    Align(
-                      alignment: Alignment.bottomCenter,
-                      child: SizedBox(
-                        height: widget.widgetHeight / 5 - 3,
-                        child: Text(
-                          '今',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                              color: getTextColor(),
-                              fontSize: PCCContext.scale(6, context),
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.topRight,
-                      child: Padding(
-                        padding: EdgeInsets.only(right: 1),
-                        child: Text(
-                          '天',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                              color: getTextColor(),
-                              fontSize: PCCContext.scale(6, context),
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ),
-                  ]),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -131,7 +48,86 @@ class _PCUCalendarCellState extends State<PCUCalendarCell> {
         widget.onChange(widget.dateItem);
         Navigator.of(context).pop();
       },
-      child: getWiget(context),
+      child: Container(
+        color: widget.isHighlighted ? colorHighlight : Colors.white,
+        child: Padding(
+          padding: EdgeInsets.all(1),
+          child: Center(
+            child: Stack(
+              children: [
+                Positioned(
+                  left: 0,
+                  top: 10,
+                  width: widget.isToday
+                      ? widget.widgetHeight / 2
+                      : widget.widgetHeight - 1,
+                  height: widget.widgetHeight / 2,
+                  child: Text(
+                    '${widget.lbl}',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: getTextColor(),
+                      fontSize: PCCContext.scale(13, context),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 0,
+                  top: 40,
+                  width: widget.widgetHeight - 1,
+                  height: widget.widgetHeight / 2,
+                  child: Text(
+                    '${widget.dbl}',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: getTextColor(),
+                      fontSize: PCCContext.scale(8, context),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  right: 0,
+                  top: 0,
+                  child: PCUTriangleWidget(
+                    width: widget.isToday ? widget.widgetHeight / 2 : 0,
+                    height: widget.isToday ? widget.widgetHeight / 2 : 0,
+                    child: Column(children: [
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: SizedBox(
+                          height: widget.widgetHeight / 5 - 3,
+                          child: Text(
+                            '今',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                                color: getTextColor(),
+                                fontSize: PCCContext.scale(6, context),
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.topRight,
+                        child: Padding(
+                          padding: EdgeInsets.only(right: 1),
+                          child: Text(
+                            '天',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                                color: getTextColor(),
+                                fontSize: PCCContext.scale(6, context),
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
+                    ]),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
