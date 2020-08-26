@@ -27,6 +27,11 @@ class _PCUSelectDateRouteState extends State<PCUSelectDateRoute> {
   String _strDaySkyBtn = '请选择日之天干';
   String _strDayEarthBtn = '请选择日之地支';
 
+  bool _bMonthSkyBtn = true;
+  bool _bMonthEarthBtn = true;
+  bool _bDaySkyBtn = true;
+  bool _bDayEarthBtn = true;
+
   @override
   Widget build(BuildContext context) {
     return PCUSingleActionRoute(
@@ -50,15 +55,19 @@ class _PCUSelectDateRouteState extends State<PCUSelectDateRoute> {
                 Row(
                   children: [
                     PCUDateTile('月    ：'),
-                    PCUDateButton(_strMonthSkyBtn, _onMonthSkyClicked),
-                    PCUDateButton(_strMonthEarthBtn, _onMonthEarthClicked),
+                    PCUDateButton(_strMonthSkyBtn,
+                        _bMonthSkyBtn ? _onMonthSkyClicked : null),
+                    PCUDateButton(_strMonthEarthBtn,
+                        _bMonthEarthBtn ? _onMonthEarthClicked : null),
                   ],
                 ),
                 Row(
                   children: [
                     PCUDateTile('日    ：'),
-                    PCUDateButton(_strDaySkyBtn, _onDaySkyClicked),
-                    PCUDateButton(_strDayEarthBtn, _onDayEarthClicked),
+                    PCUDateButton(
+                        _strDaySkyBtn, _bDaySkyBtn ? _onDaySkyClicked : null),
+                    PCUDateButton(_strDayEarthBtn,
+                        _bDayEarthBtn ? _onDayEarthClicked : null),
                   ],
                 ),
                 PCUDateButton(_strMonthSkyBtn, () {
@@ -135,6 +144,10 @@ class _PCUSelectDateRouteState extends State<PCUSelectDateRoute> {
       _strMonthEarthBtn = '请选择月之地支';
       _strDaySkyBtn = '请选择日之天干';
       _strDayEarthBtn = '请选择日之地支';
+      _bMonthSkyBtn = true;
+      _bMonthEarthBtn = true;
+      _bDaySkyBtn = true;
+      _bDayEarthBtn = true;
     });
   }
 
@@ -146,12 +159,6 @@ class _PCUSelectDateRouteState extends State<PCUSelectDateRoute> {
             child: PCUCalendarWidget(
           onChange: _onChnage,
         ));
-        // return Dialog(
-        //     child: Calendar(
-        //   firstTime: DateTime.now(),
-        //   initTime: DateTime.now(),
-        //   endTime: DateTime.now(),
-        // ));
       },
     );
   }
@@ -172,6 +179,11 @@ class _PCUSelectDateRouteState extends State<PCUSelectDateRoute> {
     _strDaySkyBtn = business.skyTrunkDay().stringName();
 
     _strDayEarthBtn = business.earthBranchDay().stringName();
+
+    _bMonthSkyBtn = false;
+    _bMonthEarthBtn = false;
+    _bDaySkyBtn = false;
+    _bDayEarthBtn = false;
 
     setState(() {});
   }
