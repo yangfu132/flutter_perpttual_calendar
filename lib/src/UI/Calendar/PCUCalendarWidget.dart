@@ -6,7 +6,7 @@ import '../../Business/Calendar/WHUCalendarItem.dart';
 import '../Base/PCUDateButton.dart';
 import '../Base/PCUDateTile.dart';
 import '../Base/PCUInfoWidget.dart';
-import 'PCUCalendarCell.dart';
+import 'PCUCalendarGridView.dart';
 
 import 'package:flutter/src/rendering/sliver_grid.dart';
 import 'package:flutter/src/rendering/sliver.dart';
@@ -38,43 +38,8 @@ class _PCUCalendarWidgetState extends State<PCUCalendarWidget> {
     setState(() {});
   }
 
-  List<Widget> dayItems(double widgetHeight) {
-    List days = [];
-    if (null != _dataDic) days = _dataDic['dataArr'];
-    List dayWidgets = days.map((value) {
-      PCUCalendarCell cell = PCUCalendarCell(widgetHeight);
-      // cell.rowIndex = 1;
-      // cell.total = days.length;
-      WHUCalendarItem dateItem = value as WHUCalendarItem;
-      if (null != dateItem.holiday)
-        cell.dbl = dateItem.holiday;
-      else
-        cell.dbl = dateItem.chineseCalendar;
-
-      if (dateItem.dateStr == _strCurDate)
-        cell.isToday = true;
-      else
-        cell.isToday = false;
-
-      if (dateItem.day < 0) {
-        cell.lbl = '${-dateItem.day}';
-        cell.isDayInCurMonth = false;
-      } else {
-        cell.lbl = '${dateItem.day}';
-        cell.isDayInCurMonth = true;
-      }
-      cell.dateItem = dateItem;
-      cell.onChange = widget.onChange;
-      return cell;
-    }).toList();
-    return dayWidgets;
-  }
-
   Widget getWidget(BuildContext context) {
     double gridWidget = PCCContext.scale(300, context);
-    double itemHeight = gridWidget / 7;
-    List list = dayItems(itemHeight);
-    int nRowCount = list.length > 35 ? 6 : 5;
     return Container(
       height: gridWidget + 1 + 10 + 100,
       width: gridWidget + 1 + 30,
@@ -97,29 +62,12 @@ class _PCUCalendarWidgetState extends State<PCUCalendarWidget> {
           //Expanded(
           // child:
           Padding(
-            padding: EdgeInsets.all(15),
-            child: Container(
-              height: itemHeight * nRowCount,
-              width: gridWidget + 1,
-              decoration: BoxDecoration(
-                color: Colors.grey,
-              ),
-              child: Padding(
-                padding: EdgeInsets.only(left: 1, top: 1, bottom: 1),
-                child: GridView.custom(
-                  shrinkWrap: true,
-                  gridDelegate: _DayPickerGridDelegate(
-                    mainAxisNumber: nRowCount,
-                    widgetHeight: itemHeight,
-                  ),
-                  physics: NeverScrollableScrollPhysics(),
-                  padding: EdgeInsets.all(0),
-                  childrenDelegate: SliverChildListDelegate(list,
-                      addRepaintBoundaries: false),
-                ),
-              ),
-            ),
-          ),
+              padding: EdgeInsets.all(15),
+              child: PCUCalendarGridView(
+                dataDic: _dataDic,
+                gridWidget: gridWidget,
+                onChange: widget.onChange,
+              )),
           // ),
           Padding(
             padding: EdgeInsets.only(left: 15, right: 15, bottom: 5),
