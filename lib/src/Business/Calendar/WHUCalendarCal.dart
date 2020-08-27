@@ -18,13 +18,15 @@ class WHUCalendarCal {
   }
 
   Map loadDataWith(String dateStr) {
+    DateTime dateTime = PWSDateTimeService.dateFromString(dateStr);
+    String strMonth = PWSDateTimeService.stringFromDate(dateTime, 'yyyy年MM月');
     this._currentCalMap =
         calendarMapWith(PWSDateTimeService.dateFromString(dateStr));
     if (this._preCalMap == null) {
-      this._preCalMap = getPreCalendarMap(dateStr);
+      this._preCalMap = getPreCalendarMap(strMonth);
     }
     if (this._nextCalMap == null) {
-      this._nextCalMap = getPreCalendarMap(dateStr);
+      this._nextCalMap = getNextCalendarMap(strMonth);
     }
     return _currentCalMap;
   }
@@ -59,7 +61,7 @@ class WHUCalendarCal {
         completeBlk(this._currentCalMap);
       } else {
         this._currentCalMap =
-            calendarMapWith(PWSDateTimeService.dateFromString(dateStr));
+            calendarMapWith(PWSDateTimeService.dateFromMonthString(dateStr));
         completeBlk(this._currentCalMap);
       }
       this._nextCalMap = null;
@@ -140,23 +142,23 @@ class WHUCalendarCal {
   }
 
   Map getPreCalendarMap(String dateStr) {
-    DateTime date = PWSDateTimeService.dateFromString(dateStr);
+    DateTime date = PWSDateTimeService.dateFromMonthString(dateStr);
     return calendarMapWith(getPreMonth(date));
   }
 
   Map getNextCalendarMap(String dateStr) {
-    DateTime date = PWSDateTimeService.dateFromString(dateStr);
+    DateTime date = PWSDateTimeService.dateFromMonthString(dateStr);
     return calendarMapWith(getLastMonth(date));
   }
 
   String preMonthOfMonthString(String dateStr) {
-    DateTime date = PWSDateTimeService.dateFromString(dateStr);
+    DateTime date = PWSDateTimeService.dateFromMonthString(dateStr);
     DateTime preDate = getPreMonth(date);
     return PWSDateTimeService.stringFromDate(preDate, 'yyyy年MM月');
   }
 
   String nextMonthOfMonthString(String dateStr) {
-    DateTime date = PWSDateTimeService.dateFromString(dateStr);
+    DateTime date = PWSDateTimeService.dateFromMonthString(dateStr);
     DateTime preDate = getLastMonth(date);
     return PWSDateTimeService.stringFromDate(preDate, 'yyyy年MM月');
   }

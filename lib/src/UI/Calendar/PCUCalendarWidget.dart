@@ -8,9 +8,6 @@ import '../Base/PCUDateTile.dart';
 import '../Base/PCUInfoWidget.dart';
 import 'PCUCalendarGridView.dart';
 
-import 'package:flutter/src/rendering/sliver_grid.dart';
-import 'package:flutter/src/rendering/sliver.dart';
-
 class PCUCalendarWidget extends StatefulWidget {
   PCUCalendarWidget({this.onChange, this.selectDate});
   final WHUCalendarCal calendarBusiness = WHUCalendarCal();
@@ -49,13 +46,13 @@ class _PCUCalendarWidgetState extends State<PCUCalendarWidget> {
             padding: EdgeInsets.only(top: 15),
             child: Row(
               children: [
-                PCUDateButton('<上一月', () {}),
+                PCUDateButton('<上一月', _onPreMonthClicked),
                 Expanded(
                   child: Center(
                     child: PCUDateTile(null == _strMonth ? '日期' : _strMonth),
                   ),
                 ),
-                PCUDateButton('下一月>', () {}),
+                PCUDateButton('下一月>', _onNextMonthClicked),
               ],
             ),
           ),
@@ -92,33 +89,20 @@ class _PCUCalendarWidgetState extends State<PCUCalendarWidget> {
   Widget build(BuildContext context) {
     return getWidget(context);
   }
-}
 
-/// 自定义GridView
-class _DayPickerGridDelegate extends SliverGridDelegate {
-  final int mainAxisNumber;
-  final double widgetHeight;
-  const _DayPickerGridDelegate({
-    this.mainAxisNumber,
-    this.widgetHeight,
-  });
-  @override
-  SliverGridLayout getLayout(SliverConstraints constraints) {
-    const int columnCount = DateTime.daysPerWeek;
-    return SliverGridRegularTileLayout(
-      crossAxisCount: columnCount,
-      mainAxisStride: widgetHeight,
-      crossAxisStride: widgetHeight,
-      childMainAxisExtent: widgetHeight - 1,
-      childCrossAxisExtent: widgetHeight - 1,
-      reverseCrossAxis: axisDirectionIsReversed(constraints.crossAxisDirection),
-    );
+  void _onPreMonthClicked() {
+    widget.calendarBusiness.preMonthCalendar(_strMonth, (Map mapDate) {
+      _dataDic = mapDate;
+      _strMonth = _dataDic['monthStr'];
+      setState(() {});
+    });
   }
 
-  @override
-  bool shouldRelayout(SliverGridDelegate oldDelegate) {
-    return false;
+  void _onNextMonthClicked() {
+    widget.calendarBusiness.nextMonthCalendar(_strMonth, (Map mapDate) {
+      _dataDic = mapDate;
+      _strMonth = _dataDic['monthStr'];
+      setState(() {});
+    });
   }
 }
-
-const _DayPickerGridDelegate _kDayPickerGridDelegate = _DayPickerGridDelegate();

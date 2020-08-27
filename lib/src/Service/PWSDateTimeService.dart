@@ -29,4 +29,8 @@ class PWSDateTimeService {
   static DateTime dateFromString(String dateString) {
     return DateFormat('yyyy-MM-dd').parse(dateString);
   }
+
+  static DateTime dateFromMonthString(String dateString) {
+    return DateFormat('yyyy年MM月').parse(dateString);
+  }
 }
