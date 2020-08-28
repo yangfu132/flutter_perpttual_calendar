@@ -87,7 +87,31 @@ class _PCUCalendarWidgetState extends State<PCUCalendarWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return getWidget(context);
+    double _left = 0.0; //距左边的偏移
+    return GestureDetector(
+      child: getWidget(context),
+      onHorizontalDragDown: (DragDownDetails details) {},
+      onHorizontalDragStart: (DragStartDetails details) {},
+      onHorizontalDragUpdate: (DragUpdateDetails details) {
+        _left += details.delta.dx;
+      },
+      onHorizontalDragEnd: (DragEndDetails details) {
+        double dx = details.velocity.pixelsPerSecond.dx;
+        print('DragEnd:dx:$dx,_left:$_left');
+        if (_left > 10) {
+          _onPreMonthClicked();
+        }
+
+        if (_left < -10) {
+          _onNextMonthClicked();
+        }
+
+        _left = 0;
+      },
+      onHorizontalDragCancel: () {
+        _left = 0;
+      },
+    );
   }
 
   void _onPreMonthClicked() {
