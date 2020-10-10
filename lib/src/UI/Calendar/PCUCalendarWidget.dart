@@ -7,6 +7,7 @@ import '../Base/PCUDateButton.dart';
 import '../Base/PCUDateTile.dart';
 import '../Base/PCUInfoWidget.dart';
 import 'PCUCalendarGridView.dart';
+import 'dart:math';
 
 class PCUCalendarWidget extends StatefulWidget {
   PCUCalendarWidget({this.onChange, this.selectDate});
@@ -88,29 +89,36 @@ class _PCUCalendarWidgetState extends State<PCUCalendarWidget> {
   @override
   Widget build(BuildContext context) {
     double _left = 0.0; //距左边的偏移
-    return GestureDetector(
-      child: getWidget(context),
-      onHorizontalDragDown: (DragDownDetails details) {},
-      onHorizontalDragStart: (DragStartDetails details) {},
-      onHorizontalDragUpdate: (DragUpdateDetails details) {
-        _left += details.delta.dx;
-      },
-      onHorizontalDragEnd: (DragEndDetails details) {
-        double dx = details.velocity.pixelsPerSecond.dx;
-        print('DragEnd:dx:$dx,_left:$_left');
-        if (_left > 10) {
-          _onPreMonthClicked();
-        }
-
-        if (_left < -10) {
-          _onNextMonthClicked();
-        }
-
-        _left = 0;
-      },
-      onHorizontalDragCancel: () {
-        _left = 0;
-      },
+    double angle = 0;
+    return DecoratedBox(
+      decoration: BoxDecoration(color: Colors.red),
+      child: Transform.rotate(
+        //旋转90度
+        angle: angle,
+        child: GestureDetector(
+          child: getWidget(context),
+          onHorizontalDragUpdate: (DragUpdateDetails details) {
+            _left += details.delta.dx;
+          },
+          onHorizontalDragEnd: (DragEndDetails details) {
+            if (_left > 10) {
+              _onPreMonthClicked();
+            }
+            if (_left < -10) {
+              _onNextMonthClicked();
+            }
+            _left = 0;
+          },
+          onHorizontalDragCancel: () {
+            _left = 0;
+          },
+          onVerticalDragCancel: () {},
+          onVerticalDragEnd: (details) {
+            angle = pi / 2;
+            setState(() {});
+          },
+        ),
+      ),
     );
   }
 
