@@ -6,7 +6,7 @@
     "configurations": [
         {
             "name": "Flutter",
-            "program": "lib/flutter_perpttual_calendar.dart",
+            "program": "example/example.dart",
             "request": "launch",
             "type": "dart"
         }
