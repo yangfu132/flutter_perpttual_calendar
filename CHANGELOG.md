@@ -3,4 +3,4 @@
 ### Added:
 Export files
 
-[1.0.0+3] https://github.com/yangfu132/flutter_perpttual_calendar.git
+[1.0.0+3] https://github.com/yangfu132/flutter_perpttual_calendar.gity
