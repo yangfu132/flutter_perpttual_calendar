@@ -92,7 +92,7 @@ class WHUCalendarCal {
         WHUCalendarItem item = WHUCalendarItem();
         item.dateStr = PWSDateTimeService.stringFromDate(theDate, 'yyyy-MM-dd');
         item.day = -theDate.day;
-        lunarForSolarYear(item, theDate);
+        // lunarForSolarYear(item, theDate);
         dateArr.add(item);
       }
     }
@@ -104,7 +104,7 @@ class WHUCalendarCal {
       DateTime theDate = firstDayOfMonth.add(new Duration(days: i));
       item.dateStr = PWSDateTimeService.stringFromDate(theDate, 'yyyy-MM-dd');
       item.day = theDate.day;
-      lunarForSolarYear(item, theDate);
+      // lunarForSolarYear(item, theDate);
       dateArr.add(item);
     }
 
@@ -118,7 +118,7 @@ class WHUCalendarCal {
         WHUCalendarItem item = WHUCalendarItem();
         item.dateStr = PWSDateTimeService.stringFromDate(theDate, 'yyyy-MM-dd');
         item.day = -i;
-        lunarForSolarYear(item, theDate);
+        // lunarForSolarYear(item, theDate);
         dateArr.add(item);
       }
     }
@@ -163,48 +163,48 @@ class WHUCalendarCal {
     return PWSDateTimeService.stringFromDate(preDate, 'yyyy年MM月');
   }
 
-  lunarForSolarYear(WHUCalendarItem calendarDay, DateTime theDate) {
-    String solarYear = PWBCalendarBusiness.lunarForSolarYear(theDate);
-    List solarYear_arr = solarYear.split('-');
-    if (solarYear_arr[0] == "正" && solarYear_arr[1] == "初一") {
-      //正月初一：春节
-      calendarDay.holiday = "春节";
-    } else if (solarYear_arr[0] == "正" && solarYear_arr[1] == "十五") {
-      //正月十五：元宵节
-      calendarDay.holiday = "元宵";
-    } else if (solarYear_arr[0] == "二" && solarYear_arr[1] == "初二") {
-      //二月初二：春龙节(龙抬头)
-      calendarDay.holiday = "龙抬头";
-    } else if (solarYear_arr[0] == "五" && solarYear_arr[1] == "初五") {
-      //五月初五：端午节
-      calendarDay.holiday = "端午";
-    } else if (solarYear_arr[0] == "七" && solarYear_arr[1] == "初七") {
-      //七月初七：七夕情人节
-      calendarDay.holiday = "七夕";
-    } else if (solarYear_arr[0] == "八" && solarYear_arr[1] == "十五") {
-      //八月十五：中秋节
-      calendarDay.holiday = "中秋";
-    } else if (solarYear_arr[0] == "九" && solarYear_arr[1] == "初九") {
-      //九月初九：重阳节、中国老年节（义务助老活动日）
-      calendarDay.holiday = "重阳";
-    } else if (solarYear_arr[0] == "腊" && solarYear_arr[1] == "初八") {
-      //腊月初八：腊八节
-      calendarDay.holiday = "腊八";
-    } else if (solarYear_arr[0] == "腊" && solarYear_arr[1] == "二十四") {
-      //腊月二十四 小年
-      calendarDay.holiday = "小年";
-    } else if (solarYear_arr[0] == "腊" && solarYear_arr[1] == "三十") {
-      //腊月三十（小月二十九）：除夕
-      calendarDay.holiday = "除夕";
-    }
+  // lunarForSolarYear(WHUCalendarItem calendarDay, DateTime theDate) {
+  //   String solarYear = PWBCalendarBusiness.lunarForSolarYear(theDate);
+  //   List solarYear_arr = solarYear.split('-');
+  //   if (solarYear_arr[0] == "正" && solarYear_arr[1] == "初一") {
+  //     //正月初一：春节
+  //     calendarDay.holiday = "春节";
+  //   } else if (solarYear_arr[0] == "正" && solarYear_arr[1] == "十五") {
+  //     //正月十五：元宵节
+  //     calendarDay.holiday = "元宵";
+  //   } else if (solarYear_arr[0] == "二" && solarYear_arr[1] == "初二") {
+  //     //二月初二：春龙节(龙抬头)
+  //     calendarDay.holiday = "龙抬头";
+  //   } else if (solarYear_arr[0] == "五" && solarYear_arr[1] == "初五") {
+  //     //五月初五：端午节
+  //     calendarDay.holiday = "端午";
+  //   } else if (solarYear_arr[0] == "七" && solarYear_arr[1] == "初七") {
+  //     //七月初七：七夕情人节
+  //     calendarDay.holiday = "七夕";
+  //   } else if (solarYear_arr[0] == "八" && solarYear_arr[1] == "十五") {
+  //     //八月十五：中秋节
+  //     calendarDay.holiday = "中秋";
+  //   } else if (solarYear_arr[0] == "九" && solarYear_arr[1] == "初九") {
+  //     //九月初九：重阳节、中国老年节（义务助老活动日）
+  //     calendarDay.holiday = "重阳";
+  //   } else if (solarYear_arr[0] == "腊" && solarYear_arr[1] == "初八") {
+  //     //腊月初八：腊八节
+  //     calendarDay.holiday = "腊八";
+  //   } else if (solarYear_arr[0] == "腊" && solarYear_arr[1] == "二十四") {
+  //     //腊月二十四 小年
+  //     calendarDay.holiday = "小年";
+  //   } else if (solarYear_arr[0] == "腊" && solarYear_arr[1] == "三十") {
+  //     //腊月三十（小月二十九）：除夕
+  //     calendarDay.holiday = "除夕";
+  //   }
 
-    calendarDay.chineseCalendar = solarYear_arr[1];
+  //   calendarDay.chineseCalendar = solarYear_arr[1];
 
-    String commonHoliday = getCommonHoliday(theDate);
-    if (commonHoliday != null) {
-      calendarDay.holiday = commonHoliday;
-    }
-  }
+  //   String commonHoliday = getCommonHoliday(theDate);
+  //   if (commonHoliday != null) {
+  //     calendarDay.holiday = commonHoliday;
+  //   }
+  // }
 
   String getCommonHoliday(DateTime calendarDay) {
     if (calendarDay.month == 1 && calendarDay.day == 1) {

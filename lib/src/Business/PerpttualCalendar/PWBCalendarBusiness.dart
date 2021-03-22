@@ -4,7 +4,7 @@ import 'dart:math';
 import 'PWBEarthBranchModel.dart';
 import 'PWBTenGodModel.dart';
 // import 'package lunar_solar_converter.dart';
-import 'package:lunar_calendar_converter/lunar_solar_converter.dart';
+// import 'package:lunar_calendar_converter/lunar_solar_converter.dart';
 
 //类注释：万年历业务逻辑
 class PWBCalendarBusiness {
@@ -23,25 +23,25 @@ class PWBCalendarBusiness {
     return "${this.theDate.year.toString()}-${this.theDate.month.toString().padLeft(2, '0')}-${this.theDate.day.toString().padLeft(2, '0')} ${this.theDate.hour.toString().padLeft(2, '0')}:${this.theDate.minute.toString().padLeft(2, '0')}:${this.theDate.second.toString().padLeft(2, '0')}";
   }
 
-// 農曆
-  String lunarDateString() {
-    Solar solar = Solar(
-        solarYear: this.theDate.year,
-        solarMonth: this.theDate.month,
-        solarDay: this.theDate.day);
-    Lunar lunar = LunarSolarConverter.solarToLunar(solar);
-    return "${lunar.lunarYear.toString()}-${lunar.lunarMonth.toString().padLeft(2, '0')}-${lunar.lunarDay.toString().padLeft(2, '0')} ${this.theDate.hour.toString().padLeft(2, '0')}:${this.theDate.minute.toString().padLeft(2, '0')}:${this.theDate.second.toString().padLeft(2, '0')}";
-  }
+// // 農曆
+//   String lunarDateString() {
+//     Solar solar = Solar(
+//         solarYear: this.theDate.year,
+//         solarMonth: this.theDate.month,
+//         solarDay: this.theDate.day);
+//     Lunar lunar = LunarSolarConverter.solarToLunar(solar);
+//     return "${lunar.lunarYear.toString()}-${lunar.lunarMonth.toString().padLeft(2, '0')}-${lunar.lunarDay.toString().padLeft(2, '0')} ${this.theDate.hour.toString().padLeft(2, '0')}:${this.theDate.minute.toString().padLeft(2, '0')}:${this.theDate.second.toString().padLeft(2, '0')}";
+//   }
 
-  static String lunarForSolarYear(DateTime date) {
-    Solar solar =
-        Solar(solarYear: date.year, solarMonth: date.month, solarDay: date.day);
-    Lunar lunar = LunarSolarConverter.solarToLunar(solar);
-    String dayStr = _lunarDays[lunar.lunarDay - 1];
-    String monthStr = _lunarMonths[lunar.lunarMonth - 1];
-    return "$monthStr-$dayStr";
-    //return "${lunar.lunarMonth.toString().padLeft(2, '0')}-${lunar.lunarDay.toString().padLeft(2, '0')}";
-  }
+//   static String lunarForSolarYear(DateTime date) {
+//     Solar solar =
+//         Solar(solarYear: date.year, solarMonth: date.month, solarDay: date.day);
+//     Lunar lunar = LunarSolarConverter.solarToLunar(solar);
+//     String dayStr = _lunarDays[lunar.lunarDay - 1];
+//     String monthStr = _lunarMonths[lunar.lunarMonth - 1];
+//     return "$monthStr-$dayStr";
+//     //return "${lunar.lunarMonth.toString().padLeft(2, '0')}-${lunar.lunarDay.toString().padLeft(2, '0')}";
+//   }
 
 //通过公历获取属性---------------------------------------------------------------
 

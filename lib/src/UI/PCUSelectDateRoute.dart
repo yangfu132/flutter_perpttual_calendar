@@ -100,7 +100,7 @@ class _PCUSelectDateRouteState extends State<PCUSelectDateRoute> {
     bool barrierDismissible = true,
     WidgetBuilder builder,
   }) {
-    final ThemeData theme = Theme.of(context, shadowThemeOnly: true);
+    final ThemeData theme = Theme.of(context);
     return showGeneralDialog(
       context: context,
       pageBuilder: (BuildContext buildContext, Animation<double> animation,
