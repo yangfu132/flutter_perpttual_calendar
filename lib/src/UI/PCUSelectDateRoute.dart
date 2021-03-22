@@ -108,9 +108,7 @@ class _PCUSelectDateRouteState extends State<PCUSelectDateRoute> {
         final Widget pageChild = Builder(builder: builder!);
         return SafeArea(
           child: Builder(builder: (BuildContext context) {
-            return theme != null
-                ? Theme(data: theme, child: pageChild)
-                : pageChild;
+            return Theme(data: theme, child: pageChild);
           }),
         );
       },

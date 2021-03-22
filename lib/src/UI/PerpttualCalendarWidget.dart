@@ -9,7 +9,6 @@ class PerpttualCalendarWidget extends StatefulWidget {
 
 class PerpttualCalendarWidgetState extends State<PerpttualCalendarWidget> {
   Color _defaultColor = Color(0xFF6F6F6F);
-  Color _btnColor = Color(0xFF176ADA);
 
   @override
   Widget build(BuildContext context) {

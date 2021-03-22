@@ -12,7 +12,7 @@ class PCUDateButton extends StatelessWidget {
     return FlatButton(
       onPressed: this.onPress,
       child: Text(
-        this.title!,
+        this.title,
         style: TextStyle(
           fontSize: 15 * _screenScale,
           color: Color(int.parse(const_color_action)),
