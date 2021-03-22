@@ -1,4 +1,4 @@
-﻿//类注释：节气
+//类注释：节气
 class PWBSolarTermModel {
   //节气名
   String termName;

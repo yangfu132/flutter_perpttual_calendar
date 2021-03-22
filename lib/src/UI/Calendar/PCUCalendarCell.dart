@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import '../../Context/PCCGloable.dart';
 import '../Base/PCUTriangleWidget.dart';
 import '../../Context/PCCContext.dart';
@@ -6,15 +6,15 @@ import '../../Business/Calendar/WHUCalendarItem.dart';
 
 class PCUCalendarCell extends StatefulWidget {
   PCUCalendarCell(this.widgetHeight);
-  String lbl;
-  String dbl;
-  bool isToday;
-  bool isDayInCurMonth;
+  String? lbl;
+  String? dbl;
+  late bool isToday;
+  late bool isDayInCurMonth;
   bool isHighlighted = false;
-  WHUCalendarItem dateItem;
+  WHUCalendarItem? dateItem;
   final double widgetHeight;
 
-  ValueChanged<WHUCalendarItem> onChange;
+  ValueChanged<WHUCalendarItem?>? onChange;
 
   @override
   State<PCUCalendarCell> createState() {
@@ -45,7 +45,7 @@ class _PCUCalendarCellState extends State<PCUCalendarCell> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        widget.onChange(widget.dateItem);
+        widget.onChange!(widget.dateItem);
         Navigator.of(context).pop();
       },
       child: Container(

@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import '../../Context/PCCContext.dart';
 import '../../Business/Calendar/WHUCalendarCal.dart';
 import '../../Business/Calendar/WHUCalendarItem.dart';
@@ -10,15 +10,15 @@ import 'package:flutter/src/rendering/sliver.dart';
 
 class PCUCalendarGridView extends StatefulWidget {
   PCUCalendarGridView({
-    @required this.gridWidget,
+    required this.gridWidget,
     this.dataDic,
     this.strCurDate,
     this.onChange,
   });
   final WHUCalendarCal calendarBusiness = WHUCalendarCal();
-  final ValueChanged<WHUCalendarItem> onChange;
-  final String strCurDate;
-  final Map dataDic;
+  final ValueChanged<WHUCalendarItem?>? onChange;
+  final String? strCurDate;
+  final Map? dataDic;
   final double gridWidget;
   @override
   State<StatefulWidget> createState() {
@@ -34,9 +34,9 @@ class _PCUCalendarWidgetState extends State<PCUCalendarGridView> {
   }
 
   List<Widget> dayItems(double widgetHeight) {
-    List days = [];
-    if (null != widget.dataDic) days = widget.dataDic['dataArr'];
-    List dayWidgets = days.map((value) {
+    List? days = [];
+    if (null != widget.dataDic) days = widget.dataDic!['dataArr'];
+    List dayWidgets = days!.map((value) {
       PCUCalendarCell cell = PCUCalendarCell(widgetHeight);
       // cell.rowIndex = 1;
       // cell.total = days.length;
@@ -62,7 +62,7 @@ class _PCUCalendarWidgetState extends State<PCUCalendarGridView> {
       cell.onChange = widget.onChange;
       return cell;
     }).toList();
-    return dayWidgets;
+    return dayWidgets as List<Widget>;
   }
 
   @override
@@ -86,8 +86,8 @@ class _PCUCalendarWidgetState extends State<PCUCalendarGridView> {
           ),
           physics: NeverScrollableScrollPhysics(),
           padding: EdgeInsets.all(0),
-          childrenDelegate:
-              SliverChildListDelegate(list, addRepaintBoundaries: false),
+          childrenDelegate: SliverChildListDelegate(list as List<Widget>,
+              addRepaintBoundaries: false),
         ),
       ),
     );
@@ -96,8 +96,8 @@ class _PCUCalendarWidgetState extends State<PCUCalendarGridView> {
 
 /// 自定义GridView
 class _DayPickerGridDelegate extends SliverGridDelegate {
-  final int mainAxisNumber;
-  final double widgetHeight;
+  final int? mainAxisNumber;
+  final double? widgetHeight;
   const _DayPickerGridDelegate({
     this.mainAxisNumber,
     this.widgetHeight,
@@ -107,10 +107,10 @@ class _DayPickerGridDelegate extends SliverGridDelegate {
     const int columnCount = DateTime.daysPerWeek;
     return SliverGridRegularTileLayout(
       crossAxisCount: columnCount,
-      mainAxisStride: widgetHeight,
-      crossAxisStride: widgetHeight,
-      childMainAxisExtent: widgetHeight - 1,
-      childCrossAxisExtent: widgetHeight - 1,
+      mainAxisStride: widgetHeight!,
+      crossAxisStride: widgetHeight!,
+      childMainAxisExtent: widgetHeight! - 1,
+      childCrossAxisExtent: widgetHeight! - 1,
       reverseCrossAxis: axisDirectionIsReversed(constraints.crossAxisDirection),
     );
   }

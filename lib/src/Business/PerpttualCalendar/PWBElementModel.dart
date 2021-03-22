@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
 enum PWBElementEnum {
   MU, //木
@@ -53,8 +53,8 @@ class PWBElementModel {
   }
 
   //方法注释：五行的中文名
-  String stringName() {
-    String result;
+  String? stringName() {
+    String? result;
     switch (this.value) {
       case PWBElementEnum.MU:
         {

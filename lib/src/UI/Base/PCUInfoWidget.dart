@@ -1,8 +1,8 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import '../../Context/PCCGloable.dart';
 
 class PCUInfoWidget extends StatelessWidget {
-  PCUInfoWidget(this.title, {Key key});
+  PCUInfoWidget(this.title, {Key? key});
   final String title;
   @override
   Widget build(BuildContext context) {

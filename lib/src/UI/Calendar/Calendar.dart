@@ -1,4 +1,4 @@
-﻿import 'package:flutter/cupertino.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/rendering.dart';
 // import 'package:flutter_xiaoe/utils/ScreenUtil.dart';
 import 'package:flutter/material.dart';
@@ -8,13 +8,13 @@ import '../../Context/PCCContext.dart';
 // import 'package:flutter_xiaoe/config/Colors.dart';
 
 class Calendar extends StatefulWidget {
-  DateTime initTime;
-  DateTime firstTime;
-  DateTime endTime;
-  ValueChanged onChange;
+  DateTime? initTime;
+  DateTime? firstTime;
+  DateTime? endTime;
+  ValueChanged? onChange;
 
   Calendar({
-    Key key,
+    Key? key,
     this.initTime,
     this.firstTime,
     this.endTime,
@@ -26,15 +26,15 @@ class Calendar extends StatefulWidget {
 }
 
 class _CalendarState extends State<Calendar> {
-  PageController pageController;
-  DateTime selectDate;
+  PageController? pageController;
+  DateTime? selectDate;
   int initPage = 0;
   int totalPage = 0;
 
   @override
   void initState() {
     super.initState();
-    print(widget.firstTime.month);
+    print(widget.firstTime!.month);
     selectDate = widget.initTime;
 
     /// 总共的月份数目
@@ -65,7 +65,7 @@ class _CalendarState extends State<Calendar> {
     if (selectDate != time) {
       setState(() {
         selectDate = time;
-        widget.onChange(time);
+        if (null != widget.onChange) widget.onChange!(time);
       });
     }
   }
@@ -84,17 +84,17 @@ class _CalendarState extends State<Calendar> {
           itemBuilder: (BuildContext context, int index) {
             return DayGridView(
               initDate: DateTime(
-                widget.initTime.year,
-                widget.initTime.month,
-                widget.initTime.day,
+                widget.initTime!.year,
+                widget.initTime!.month,
+                widget.initTime!.day,
               ),
-              selectDate:
-                  DateTime(selectDate.year, selectDate.month, selectDate.day),
-              year: widget.firstTime.year +
-                  ((widget.firstTime.month + index - 1) / 12).floor(),
-              month: (widget.firstTime.month + index) % 12 == 0
+              selectDate: DateTime(
+                  selectDate!.year, selectDate!.month, selectDate!.day),
+              year: widget.firstTime!.year +
+                  ((widget.firstTime!.month + index - 1) / 12).floor(),
+              month: (widget.firstTime!.month + index) % 12 == 0
                   ? 12
-                  : (widget.firstTime.month + index) % 12,
+                  : (widget.firstTime!.month + index) % 12,
               onChange: onChange,
             );
           },

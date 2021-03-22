@@ -1,4 +1,4 @@
-﻿import 'package:flutter/cupertino.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/rendering.dart';
 // import 'package:flutter_xiaoe/utils/ScreenUtil.dart';
 // import 'package:flutter_xiaoe/utils/NetUtil.dart';
@@ -14,14 +14,14 @@ class DayGridView extends StatefulWidget {
   DateTime selectDate;
   int year;
   int month;
-  ValueChanged onChange;
+  ValueChanged? onChange;
 
   DayGridView({
-    Key key,
-    @required this.initDate,
-    @required this.selectDate,
-    @required this.year,
-    @required this.month,
+    Key? key,
+    /*required*/ required this.initDate,
+    /*required*/ required this.selectDate,
+    /*required*/ required this.year,
+    /*required*/ required this.month,
     this.onChange,
   });
 
@@ -45,7 +45,7 @@ class _DayGridViewState extends State<DayGridView> {
       if (value == widget.selectDate) {
         return GestureDetector(
           onTap: () {
-            widget.onChange(widget.selectDate);
+            widget.onChange!(widget.selectDate);
           },
           child: Container(
             color: Colors.white,
@@ -69,7 +69,7 @@ class _DayGridViewState extends State<DayGridView> {
         if (value == widget.initDate) {
           return GestureDetector(
             onTap: () {
-              widget.onChange(widget.initDate);
+              widget.onChange!(widget.initDate);
             },
             child: Container(
                 color: Colors.white,
@@ -95,7 +95,7 @@ class _DayGridViewState extends State<DayGridView> {
             /// 在今天之前的时间可以点击
             return GestureDetector(
               onTap: () {
-                widget.onChange(value);
+                widget.onChange!(value);
               },
               child: Container(
                   color: Colors.white,
@@ -111,7 +111,7 @@ class _DayGridViewState extends State<DayGridView> {
         }
       }
     }).toList();
-    return dayWidgets;
+    return dayWidgets as List<Widget>;
   }
 
   @override
@@ -132,7 +132,7 @@ class _DayGridViewState extends State<DayGridView> {
 
 /// 自定义GridView
 class _DayPickerGridDelegate extends SliverGridDelegate {
-  final int mainAxisNumber;
+  final int? mainAxisNumber;
 
   const _DayPickerGridDelegate({
     this.mainAxisNumber,
@@ -142,7 +142,7 @@ class _DayPickerGridDelegate extends SliverGridDelegate {
   SliverGridLayout getLayout(SliverConstraints constraints) {
     const int columnCount = DateTime.daysPerWeek;
     final double tileWidth = constraints.crossAxisExtent / columnCount;
-    final double tileHeight = PCCContext.px2pt(600) / mainAxisNumber;
+    final double tileHeight = PCCContext.px2pt(600) / mainAxisNumber!;
     return SliverGridRegularTileLayout(
       crossAxisCount: columnCount,
       mainAxisStride: tileHeight,

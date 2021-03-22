@@ -1,10 +1,10 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'PCUSingleActionRoute.dart';
 import '../../Context/PCCGloable.dart';
 
 class PCUListEntryRoute extends StatefulWidget {
-  PCUListEntryRoute(this.dataList, {this.title, Key key}) : super(key: key);
-  final String title;
+  PCUListEntryRoute(this.dataList, {this.title, Key? key}) : super(key: key);
+  final String? title;
   final List<String> dataList;
   @override
   PCUListEntryRouteState createState() {

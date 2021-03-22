@@ -1,4 +1,4 @@
-﻿import 'PWBSkyTrunkModel.dart';
+import 'PWBSkyTrunkModel.dart';
 import 'PWBSolarTermModel.dart';
 import 'dart:math';
 import 'PWBEarthBranchModel.dart';
@@ -13,10 +13,10 @@ class PWBCalendarBusiness {
     this.solarTerms = computeSolarTerm(this.theDate.month);
   }
   //属性注释：日期对象
-  DateTime theDate;
+  late DateTime theDate;
 
   //属性注释：当年节气
-  List<PWBSolarTermModel> solarTerms;
+  late List<PWBSolarTermModel> solarTerms;
 
 // 公曆
   String stringFromDate() {
@@ -88,7 +88,7 @@ class PWBCalendarBusiness {
   }
 
   //方法注释：生肖
-  String shengXiao() {
+  String? shengXiao() {
     return earthBranchYear().shengxiaoValue();
   }
 
@@ -154,8 +154,8 @@ class PWBCalendarBusiness {
 
   // 方法注释：十神函数
   PWBTenGodModel getTenGod(PWBSkyTrunkModel aBranch) {
-    int x = skyTrunkDay().elementValue().value.index;
-    int y = aBranch.elementValue().value.index;
+    int x = skyTrunkDay().elementValue()!.value.index;
+    int y = aBranch.elementValue()!.value.index;
     int b = skyTrunkDay().biValue() * aBranch.biValue();
     int index = (4 * x + y) % 5 + 1;
     index *= b;
@@ -163,7 +163,7 @@ class PWBCalendarBusiness {
   }
 
   // 方法注释：获取十神名字的竖排版显示方式
-  String getTenGodForVerticalName(PWBSkyTrunkModel aBranch) {
+  String? getTenGodForVerticalName(PWBSkyTrunkModel aBranch) {
     return getTenGod(aBranch).verticalName();
   }
 

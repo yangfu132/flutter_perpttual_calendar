@@ -1,4 +1,4 @@
-﻿import 'PWBElementModel.dart';
+import 'PWBElementModel.dart';
 
 ///术语表：
 ///SkyTrunk：天干
@@ -24,8 +24,8 @@ class PWBSkyTrunkModel {
   PWBSkyTrunkEnum value;
 
   // 天干名
-  String stringName() {
-    String result;
+  String? stringName() {
+    String? result;
     switch (this.value) {
       case PWBSkyTrunkEnum.JIA:
         {
@@ -90,8 +90,8 @@ class PWBSkyTrunkModel {
   }
 
 //方法注释：五行
-  PWBElementModel elementValue() {
-    PWBElementModel result;
+  PWBElementModel? elementValue() {
+    PWBElementModel? result;
     switch (this.value) {
       case PWBSkyTrunkEnum.JIA: //甲
       case PWBSkyTrunkEnum.YI: //乙

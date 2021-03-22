@@ -1,22 +1,22 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import '../../Context/PCCGloable.dart';
 import 'PCUDateButton.dart';
 import 'PCUDateTile.dart';
 
 class PCUSingleActionRoute extends StatefulWidget {
   PCUSingleActionRoute(
-      {Key key,
+      {Key? key,
       this.title,
       this.strActionTitle,
       this.actionCall,
       this.floatingCall,
       this.body})
       : super(key: key);
-  final String title;
-  final String strActionTitle;
-  final VoidCallback actionCall;
-  final VoidCallback floatingCall;
-  final Widget body;
+  final String? title;
+  final String? strActionTitle;
+  final VoidCallback? actionCall;
+  final VoidCallback? floatingCall;
+  final Widget? body;
   @override
   _PCUSingleActionRouteState createState() => _PCUSingleActionRouteState();
 }
@@ -31,7 +31,7 @@ class _PCUSingleActionRouteState extends State<PCUSingleActionRoute> {
       data: ThemeData(primaryColor: Colors.white),
       child: Scaffold(
         appBar: AppBar(
-          title: PCUDateTile(widget.title),
+          title: PCUDateTile(widget.title!),
           leading: ConstrainedBox(
             constraints: BoxConstraints(
               minWidth: 50,
@@ -45,7 +45,7 @@ class _PCUSingleActionRouteState extends State<PCUSingleActionRoute> {
                 }),
           ),
           actions: [
-            PCUDateButton(widget.strActionTitle, widget.actionCall),
+            PCUDateButton(widget.strActionTitle!, widget.actionCall!),
           ],
         ),
         body: widget.body,

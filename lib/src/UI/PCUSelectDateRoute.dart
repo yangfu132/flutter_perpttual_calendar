@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import '../Business/PerpttualCalendar/PWBEarthBranchModel.dart';
 import '../Business/PerpttualCalendar/PWBSkyTrunkModel.dart';
 import 'Base/PCUDateButton.dart';
@@ -13,8 +13,8 @@ import '../Service/PWSDateTimeService.dart';
 import '../Business/PerpttualCalendar/PWBCalendarBusiness.dart';
 
 class PCUSelectDateRoute extends StatefulWidget {
-  PCUSelectDateRoute({Key key, this.title}) : super(key: key);
-  final String title;
+  PCUSelectDateRoute({Key? key, this.title}) : super(key: key);
+  final String? title;
 
   @override
   _PCUSelectDateRouteState createState() => _PCUSelectDateRouteState();
@@ -22,10 +22,10 @@ class PCUSelectDateRoute extends StatefulWidget {
 
 class _PCUSelectDateRouteState extends State<PCUSelectDateRoute> {
   String _strDateBtn = '请选择日期';
-  String _strMonthSkyBtn = '请选择月之天干';
-  String _strMonthEarthBtn = '请选择月之地支';
-  String _strDaySkyBtn = '请选择日之天干';
-  String _strDayEarthBtn = '请选择日之地支';
+  String? _strMonthSkyBtn = '请选择月之天干';
+  String? _strMonthEarthBtn = '请选择月之地支';
+  String? _strDaySkyBtn = '请选择日之天干';
+  String? _strDayEarthBtn = '请选择日之地支';
 
   bool _bMonthSkyBtn = true;
   bool _bMonthEarthBtn = true;
@@ -55,9 +55,9 @@ class _PCUSelectDateRouteState extends State<PCUSelectDateRoute> {
                 Row(
                   children: [
                     PCUDateTile('月    ：'),
-                    PCUDateButton(_strMonthSkyBtn,
+                    PCUDateButton(_strMonthSkyBtn!,
                         _bMonthSkyBtn ? _onMonthSkyClicked : null),
-                    PCUDateButton(_strMonthEarthBtn,
+                    PCUDateButton(_strMonthEarthBtn!,
                         _bMonthEarthBtn ? _onMonthEarthClicked : null),
                   ],
                 ),
@@ -65,12 +65,12 @@ class _PCUSelectDateRouteState extends State<PCUSelectDateRoute> {
                   children: [
                     PCUDateTile('日    ：'),
                     PCUDateButton(
-                        _strDaySkyBtn, _bDaySkyBtn ? _onDaySkyClicked : null),
-                    PCUDateButton(_strDayEarthBtn,
+                        _strDaySkyBtn!, _bDaySkyBtn ? _onDaySkyClicked : null),
+                    PCUDateButton(_strDayEarthBtn!,
                         _bDayEarthBtn ? _onDayEarthClicked : null),
                   ],
                 ),
-                PCUDateButton(_strMonthSkyBtn, () {
+                PCUDateButton(_strMonthSkyBtn!, () {
                   showCustomDialog<bool>(
                     context: context,
                     builder: (context) {
@@ -95,17 +95,17 @@ class _PCUSelectDateRouteState extends State<PCUSelectDateRoute> {
     );
   }
 
-  Future<T> showCustomDialog<T>({
-    @required BuildContext context,
+  Future<T?> showCustomDialog<T>({
+    /*required*/ required BuildContext context,
     bool barrierDismissible = true,
-    WidgetBuilder builder,
+    WidgetBuilder? builder,
   }) {
     final ThemeData theme = Theme.of(context);
     return showGeneralDialog(
       context: context,
       pageBuilder: (BuildContext buildContext, Animation<double> animation,
           Animation<double> secondaryAnimation) {
-        final Widget pageChild = Builder(builder: builder);
+        final Widget pageChild = Builder(builder: builder!);
         return SafeArea(
           child: Builder(builder: (BuildContext context) {
             return theme != null
@@ -163,9 +163,10 @@ class _PCUSelectDateRouteState extends State<PCUSelectDateRoute> {
     );
   }
 
-  void _onChnage(WHUCalendarItem dateItem) {
+  void _onChnage(WHUCalendarItem? dateItem) {
+    if (null == dateItem) return;
     print('dateItem:${dateItem.dateStr}');
-    DateTime dateTime = PWSDateTimeService.dateFromString(dateItem.dateStr);
+    DateTime dateTime = PWSDateTimeService.dateFromString(dateItem.dateStr!);
 
     _strDateBtn =
         PWSDateTimeService.stringFromDate(dateTime, "yyyy年  MM月  dd日");

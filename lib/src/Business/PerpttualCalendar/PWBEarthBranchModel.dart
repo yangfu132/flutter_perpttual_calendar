@@ -1,4 +1,4 @@
-﻿import 'PWBElementModel.dart';
+import 'PWBElementModel.dart';
 import 'PWBSkyTrunkModel.dart';
 
 //子=0,丑,寅,卯,辰,巳,午,未,申,酉,戌,亥,
@@ -39,9 +39,9 @@ class PWBEarthBranchModel {
   PWBEarchBranchEnum value;
 
   //方法注释：地支中文名
-  String stringName() {
+  String? stringName() {
     // 子=0,丑,寅,卯,辰,巳,午,未,申,酉,戌,亥,
-    String result;
+    String? result;
     switch (this.value) {
       case PWBEarchBranchEnum.ZI: //子
         {
@@ -116,9 +116,9 @@ class PWBEarthBranchModel {
   }
 
   //方法注释：地支的五行分类
-  PWBElementModel elementValue() {
+  PWBElementModel? elementValue() {
     // 子=0,丑,寅,卯,辰,巳,午,未,申,酉,戌,亥,
-    PWBElementModel result;
+    PWBElementModel? result;
     switch (this.value) {
       case PWBEarchBranchEnum.YIN: //寅
       case PWBEarchBranchEnum.MAO: //卯
@@ -165,9 +165,9 @@ class PWBEarthBranchModel {
   }
 
   //方法注释：地支的生肖对应
-  String shengxiaoValue() {
+  String? shengxiaoValue() {
     // 子=0,丑,寅,卯,辰,巳,午,未,申,酉,戌,亥,
-    String result;
+    String? result;
     switch (this.value) {
       case PWBEarchBranchEnum.ZI: //子
         {
@@ -242,8 +242,8 @@ class PWBEarthBranchModel {
   }
 
   //方法注释：藏干
-  List<PWBSkyTrunkModel> skytrunkValue() {
-    List<PWBSkyTrunkModel> result;
+  List<PWBSkyTrunkModel>? skytrunkValue() {
+    List<PWBSkyTrunkModel>? result;
     switch (this.value) {
       case PWBEarchBranchEnum.ZI: //子
         {

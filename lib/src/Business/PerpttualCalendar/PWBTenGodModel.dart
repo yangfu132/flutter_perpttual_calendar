@@ -1,4 +1,4 @@
-﻿//十神
+//十神
 const int TenGod_BiJian = 1; //比肩
 const int TenGod_JieCai = -1; //劫財
 
@@ -20,8 +20,8 @@ class PWBTenGodModel {
   int value;
 
   //方法注释：十神的中文名称
-  String stringName() {
-    String result;
+  String? stringName() {
+    String? result;
     switch (this.value) {
       case TenGod_BiJian: // 比肩
         {
@@ -86,8 +86,8 @@ class PWBTenGodModel {
   }
 
   //方法注释：十神的中文简称
-  String shortName() {
-    String result;
+  String? shortName() {
+    String? result;
     switch (this.value) {
       case TenGod_BiJian: // 比肩
         {
@@ -152,8 +152,8 @@ class PWBTenGodModel {
   }
 
   //方法注释：十神的中文名称，展示时需要竖着展示
-  String verticalName() {
-    String result;
+  String? verticalName() {
+    String? result;
     switch (this.value) {
       case TenGod_BiJian: // 比肩
         {

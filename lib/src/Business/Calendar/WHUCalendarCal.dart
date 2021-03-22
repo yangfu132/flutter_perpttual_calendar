@@ -1,15 +1,15 @@
-﻿import '../../Service/PWSDateTimeService.dart';
+import '../../Service/PWSDateTimeService.dart';
 import 'WHUCalendarItem.dart';
-import '../PerpttualCalendar/PWBCalendarBusiness.dart';
+// import '../PerpttualCalendar/PWBCalendarBusiness.dart';
 
 class WHUCalendarCal {
   WHUCalendarCal({this.curDateStr});
-  String curDateStr;
-  Map _preCalMap;
-  Map _nextCalMap;
-  Map _currentCalMap;
+  String? curDateStr;
+  Map? _preCalMap;
+  Map? _nextCalMap;
+  Map? _currentCalMap;
 
-  String currentDateStr() {
+  String? currentDateStr() {
     if (null == curDateStr) {
       this.curDateStr =
           PWSDateTimeService.stringFromDate(DateTime.now(), 'yyyy-MM-dd');
@@ -17,7 +17,7 @@ class WHUCalendarCal {
     return this.curDateStr;
   }
 
-  Map loadDataWith(String dateStr) {
+  Map? loadDataWith(String dateStr) {
     DateTime dateTime = PWSDateTimeService.dateFromString(dateStr);
     String strMonth = PWSDateTimeService.stringFromDate(dateTime, 'yyyy年MM月');
     this._currentCalMap =
@@ -32,11 +32,11 @@ class WHUCalendarCal {
   }
 
   void getCalendarMapWithCallBack(
-      String dateStr, void Function(Map dic) completeBlk) {
+      String dateStr, void Function(Map? dic) completeBlk) {
     String nextMonthStr = nextMonthOfMonthString(dateStr);
     String preMonthStr = preMonthOfMonthString(dateStr);
-    if (this._preCalMap != null && (this._preCalMap["monthStr"] == dateStr)) {
-      Map tempCur = this._currentCalMap;
+    if (this._preCalMap != null && (this._preCalMap!["monthStr"] == dateStr)) {
+      Map? tempCur = this._currentCalMap;
       this._currentCalMap = this._preCalMap;
       completeBlk(this._currentCalMap);
       if (tempCur != null && (tempCur["monthStr"] == nextMonthStr)) {
@@ -46,8 +46,8 @@ class WHUCalendarCal {
       }
       this._preCalMap = null;
     } else if (this._nextCalMap != null &&
-        (this._nextCalMap["monthStr"] == dateStr)) {
-      Map tempCur = this._currentCalMap;
+        (this._nextCalMap!["monthStr"] == dateStr)) {
+      Map? tempCur = this._currentCalMap;
       this._currentCalMap = this._nextCalMap;
       completeBlk(this._currentCalMap);
       if (tempCur != null && (tempCur["monthStr"] == preMonthStr)) {
@@ -57,7 +57,7 @@ class WHUCalendarCal {
       }
       this._nextCalMap = null;
     } else {
-      if (this._currentCalMap["monthStr"] == dateStr) {
+      if (this._currentCalMap!["monthStr"] == dateStr) {
         completeBlk(this._currentCalMap);
       } else {
         this._currentCalMap =
@@ -131,12 +131,12 @@ class WHUCalendarCal {
     return calendarMapWith(date);
   }
 
-  void preMonthCalendar(String dateStr, void Function(Map) completionBlk) {
+  void preMonthCalendar(String dateStr, void Function(Map?) completionBlk) {
     String preMonthStr = preMonthOfMonthString(dateStr);
     getCalendarMapWithCallBack(preMonthStr, completionBlk);
   }
 
-  void nextMonthCalendar(String dateStr, void Function(Map) completionBlk) {
+  void nextMonthCalendar(String dateStr, void Function(Map?) completionBlk) {
     String nextMonthStr = nextMonthOfMonthString(dateStr);
     getCalendarMapWithCallBack(nextMonthStr, completionBlk);
   }
@@ -206,7 +206,7 @@ class WHUCalendarCal {
   //   }
   // }
 
-  String getCommonHoliday(DateTime calendarDay) {
+  String? getCommonHoliday(DateTime calendarDay) {
     if (calendarDay.month == 1 && calendarDay.day == 1) {
       return "元旦";
 

@@ -1,4 +1,4 @@
-﻿import 'package:flutter/cupertino.dart';
+import 'package:flutter/cupertino.dart';
 // import 'package:flutter_xiaoe/utils/ScreenUtil.dart';
 // import 'package:flutter_xiaoe/utils/NetUtil.dart';
 // import 'package:flutter_xiaoe/config/Api.dart';

@@ -1,10 +1,10 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
 class PCUTriangleWidget extends StatefulWidget {
-  PCUTriangleWidget({@required this.width, @required this.height, this.child});
+  PCUTriangleWidget({/*required*/ required this.width, /*required*/ required this.height, this.child});
   final double width;
   final double height;
-  final Widget child;
+  final Widget? child;
   @override
   State<StatefulWidget> createState() {
     return _PCUTriangleWidgetState();

@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'WHUCalendarYMSelectView.dart';
 import '../../Context/PCCContext.dart';
 import '../../Business/Calendar/WHUCalendarCal.dart';
@@ -12,8 +12,8 @@ import 'dart:math';
 class PCUCalendarWidget extends StatefulWidget {
   PCUCalendarWidget({this.onChange, this.selectDate});
   final WHUCalendarCal calendarBusiness = WHUCalendarCal();
-  final ValueChanged<WHUCalendarItem> onChange;
-  final DateTime selectDate;
+  final ValueChanged<WHUCalendarItem?>? onChange;
+  final DateTime? selectDate;
 
   @override
   State<StatefulWidget> createState() {
@@ -22,17 +22,17 @@ class PCUCalendarWidget extends StatefulWidget {
 }
 
 class _PCUCalendarWidgetState extends State<PCUCalendarWidget> {
-  String _strMonth;
-  String _strCurDate;
-  Map _dataDic;
+  String? _strMonth;
+  String? _strCurDate;
+  Map? _dataDic;
 
   @override
   void initState() {
     super.initState();
     _strCurDate = widget.calendarBusiness.currentDateStr();
-    _dataDic = widget.calendarBusiness.loadDataWith(_strCurDate);
+    _dataDic = widget.calendarBusiness.loadDataWith(_strCurDate!);
 
-    _strMonth = _dataDic['monthStr'];
+    _strMonth = _dataDic!['monthStr'];
     setState(() {});
   }
 
@@ -50,7 +50,7 @@ class _PCUCalendarWidgetState extends State<PCUCalendarWidget> {
                 PCUDateButton('<上一月', _onPreMonthClicked),
                 Expanded(
                   child: Center(
-                    child: PCUDateTile(null == _strMonth ? '日期' : _strMonth),
+                    child: PCUDateTile(null == _strMonth ? '日期' : _strMonth!),
                   ),
                 ),
                 PCUDateButton('下一月>', _onNextMonthClicked),
@@ -123,17 +123,17 @@ class _PCUCalendarWidgetState extends State<PCUCalendarWidget> {
   }
 
   void _onPreMonthClicked() {
-    widget.calendarBusiness.preMonthCalendar(_strMonth, (Map mapDate) {
+    widget.calendarBusiness.preMonthCalendar(_strMonth!, (Map? mapDate) {
       _dataDic = mapDate;
-      _strMonth = _dataDic['monthStr'];
+      _strMonth = _dataDic!['monthStr'];
       setState(() {});
     });
   }
 
   void _onNextMonthClicked() {
-    widget.calendarBusiness.nextMonthCalendar(_strMonth, (Map mapDate) {
+    widget.calendarBusiness.nextMonthCalendar(_strMonth!, (Map? mapDate) {
       _dataDic = mapDate;
-      _strMonth = _dataDic['monthStr'];
+      _strMonth = _dataDic!['monthStr'];
       setState(() {});
     });
   }
