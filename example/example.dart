@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../lib/src/UI/PerpttualCalendarWidget.dart';
+
 import '../lib/src/UI/PCUSelectDateRoute.dart';
-import '../lib/src/UI/Calendar/Calendar.dart';
+import '../lib/src/UI/PerpttualCalendarWidget.dart';
 
 void main() {
   runApp(MyApp());
@@ -103,7 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
               style: Theme.of(context).textTheme.headline4,
             ),
             PerpttualCalendarWidget(),
-            FlatButton(
+            TextButton(
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return PCUSelectDateRoute(title: '选择日期');
@@ -111,7 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               child: Text('选择日期'),
             ),
-            FlatButton(
+            TextButton(
               onPressed: () {
                 // Navigator.push(context, MaterialPageRoute(builder: (context) {
                 //   return Calendar();

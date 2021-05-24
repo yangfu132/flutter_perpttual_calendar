@@ -1,20 +1,21 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/rendering.dart';
 // import 'package:flutter_xiaoe/utils/ScreenUtil.dart';
 // import 'package:flutter_xiaoe/utils/NetUtil.dart';
 // import 'package:flutter_xiaoe/config/Api.dart';
 // import 'package:flutter_xiaoe/config/Colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+
+import '../../Context/PCCContext.dart';
 // import 'dart:math' as math;
 import 'TimeUtil.dart';
-import '../../Context/PCCContext.dart';
 
 class DayGridView extends StatefulWidget {
-  DateTime initDate;
-  DateTime selectDate;
-  int year;
-  int month;
-  ValueChanged? onChange;
+  final DateTime initDate;
+  final DateTime selectDate;
+  final int year;
+  final int month;
+  final ValueChanged? onChange;
 
   DayGridView({
     Key? key,
@@ -157,4 +158,4 @@ class _DayPickerGridDelegate extends SliverGridDelegate {
   bool shouldRelayout(_DayPickerGridDelegate oldDelegate) => false;
 }
 
-const _DayPickerGridDelegate _kDayPickerGridDelegate = _DayPickerGridDelegate();
+// const _DayPickerGridDelegate _kDayPickerGridDelegate = _DayPickerGridDelegate();

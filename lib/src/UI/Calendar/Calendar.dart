@@ -1,17 +1,18 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/rendering.dart';
 // import 'package:flutter_xiaoe/utils/ScreenUtil.dart';
 import 'package:flutter/material.dart';
-import 'TimeUtil.dart';
-import 'DayGridViewDemo.dart';
+import 'package:flutter/rendering.dart';
+
 import '../../Context/PCCContext.dart';
+import 'DayGridViewDemo.dart';
+import 'TimeUtil.dart';
 // import 'package:flutter_xiaoe/config/Colors.dart';
 
 class Calendar extends StatefulWidget {
-  DateTime? initTime;
-  DateTime? firstTime;
-  DateTime? endTime;
-  ValueChanged? onChange;
+  final DateTime? initTime;
+  final DateTime? firstTime;
+  final DateTime? endTime;
+  final ValueChanged? onChange;
 
   Calendar({
     Key? key,

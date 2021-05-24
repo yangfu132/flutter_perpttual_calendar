@@ -3,6 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="faaf0726-5ad7-4cf4-ba29-0996395f1759" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/example.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/example.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/Business/PerpttualCalendar/PWBCalendarBusiness.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/Business/PerpttualCalendar/PWBCalendarBusiness.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/Business/PerpttualCalendar/PWBElementModel.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/Business/PerpttualCalendar/PWBElementModel.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/UI/Base/PCUDateButton.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/UI/Base/PCUDateButton.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/UI/Calendar/Calendar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/UI/Calendar/Calendar.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/UI/Calendar/DayGridView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/UI/Calendar/DayGridView.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,7 +30,6 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="dart.analysis.tool.window.force.activate" value="true" />
-    <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>

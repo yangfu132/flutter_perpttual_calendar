@@ -1,7 +1,8 @@
+import 'dart:math';
+
+import 'PWBEarthBranchModel.dart';
 import 'PWBSkyTrunkModel.dart';
 import 'PWBSolarTermModel.dart';
-import 'dart:math';
-import 'PWBEarthBranchModel.dart';
 import 'PWBTenGodModel.dart';
 // import 'package lunar_solar_converter.dart';
 // import 'package:lunar_calendar_converter/lunar_solar_converter.dart';
@@ -222,7 +223,6 @@ class PWBCalendarBusiness {
       else if (y % 4 == 0) {
         monL[2] += 1;
       }
-      ;
     }
     //else cont.
 
@@ -382,51 +382,51 @@ class PWBCalendarBusiness {
 }
 
 //农历日期名
-List _lunarDays = [
-  "初一",
-  "初二",
-  "初三",
-  "初四",
-  "初五",
-  "初六",
-  "初七",
-  "初八",
-  "初九",
-  "初十",
-  "十一",
-  "十二",
-  "十三",
-  "十四",
-  "十五",
-  "十六",
-  "十七",
-  "十八",
-  "十九",
-  "二十",
-  "廿一",
-  "廿二",
-  "廿三",
-  "廿四",
-  "廿五",
-  "廿六",
-  "廿七",
-  "廿八",
-  "廿九",
-  "三十"
-];
-
-//农历月份名
-List _lunarMonths = [
-  "正",
-  "二",
-  "三",
-  "四",
-  "五",
-  "六",
-  "七",
-  "八",
-  "九",
-  "十",
-  "十一",
-  "腊"
-];
+// List _lunarDays = [
+//   "初一",
+//   "初二",
+//   "初三",
+//   "初四",
+//   "初五",
+//   "初六",
+//   "初七",
+//   "初八",
+//   "初九",
+//   "初十",
+//   "十一",
+//   "十二",
+//   "十三",
+//   "十四",
+//   "十五",
+//   "十六",
+//   "十七",
+//   "十八",
+//   "十九",
+//   "二十",
+//   "廿一",
+//   "廿二",
+//   "廿三",
+//   "廿四",
+//   "廿五",
+//   "廿六",
+//   "廿七",
+//   "廿八",
+//   "廿九",
+//   "三十"
+// ];
+//
+// //农历月份名
+// List _lunarMonths = [
+//   "正",
+//   "二",
+//   "三",
+//   "四",
+//   "五",
+//   "六",
+//   "七",
+//   "八",
+//   "九",
+//   "十",
+//   "十一",
+//   "腊"
+// ];

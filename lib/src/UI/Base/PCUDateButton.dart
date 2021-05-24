@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../Context/PCCGloable.dart';
 
 class PCUDateButton extends StatelessWidget {
@@ -9,7 +10,7 @@ class PCUDateButton extends StatelessWidget {
   Widget build(BuildContext context) {
     double _screenScale =
         MediaQuery.of(context).size.width / const_iPhone11_width;
-    return FlatButton(
+    return TextButton(
       onPressed: this.onPress,
       child: Text(
         this.title,

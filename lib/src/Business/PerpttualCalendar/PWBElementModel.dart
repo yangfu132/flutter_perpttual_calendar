@@ -89,7 +89,6 @@ class PWBElementModel {
           break;
         }
     }
-    ;
 
     return result;
   }
