@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/rendering/sliver_grid.dart';
 import 'package:flutter/src/rendering/sliver.dart';
-import 'TimeUtil.dart';
+import 'package:flutter/src/rendering/sliver_grid.dart';
+
 import '../../Context/PCCContext.dart';
+import 'TimeUtil.dart';
 
 class DayGridView extends StatefulWidget {
-  DateTime initDate;
-  DateTime selectDate;
+  final DateTime initDate;
+  final DateTime selectDate;
 
   int year;
   int month;
