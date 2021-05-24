@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="faaf0726-5ad7-4cf4-ba29-0996395f1759" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/UI/Calendar/DayGridViewDemo.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/UI/Calendar/DayGridViewDemo.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/UI/Calendar/PCUCalendarCell.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/UI/Calendar/PCUCalendarCell.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/UI/Calendar/PCUCalendarGridView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/UI/Calendar/PCUCalendarGridView.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/UI/Calendar/PCUCalendarWidget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/UI/Calendar/PCUCalendarWidget.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +25,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="dart.analysis.tool.window.force.activate" value="true" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
