@@ -118,5 +118,3 @@ class _DayPickerGridDelegate extends SliverGridDelegate {
     return false;
   }
 }
-
-const _DayPickerGridDelegate _kDayPickerGridDelegate = _DayPickerGridDelegate();

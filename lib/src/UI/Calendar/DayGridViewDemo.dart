@@ -9,17 +9,17 @@ class DayGridView extends StatefulWidget {
   final DateTime initDate;
   final DateTime selectDate;
 
-  int year;
-  int month;
+  final int year;
+  final int month;
 
-  ValueChanged? onChange;
+  final ValueChanged? onChange;
 
   DayGridView({
     Key? key,
-    /*required*/ required this.initDate,
-    /*required*/ required this.selectDate,
-    /*required*/ required this.year,
-    /*required*/ required this.month,
+    required this.initDate,
+    required this.selectDate,
+    required this.year,
+    required this.month,
     this.onChange,
   });
 
@@ -156,5 +156,3 @@ class _DayPickerGridDelegate extends SliverGridDelegate {
     return false;
   }
 }
-
-const _DayPickerGridDelegate _kDayPickerGridDelegate = _DayPickerGridDelegate();

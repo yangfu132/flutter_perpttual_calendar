@@ -6,15 +6,15 @@ import '../Base/PCUTriangleWidget.dart';
 
 class PCUCalendarCell extends StatefulWidget {
   PCUCalendarCell(this.widgetHeight);
-  String? lbl;
-  String? dbl;
-  late bool isToday;
-  late bool isDayInCurMonth;
-  bool isHighlighted = false;
-  WHUCalendarItem? dateItem;
-  final double widgetHeight;
+  late final String? lbl;
+  late final String? dbl;
+  late final bool isToday;
+  late final bool isDayInCurMonth;
+  late final bool isHighlighted = false;
+  late final WHUCalendarItem? dateItem;
+  late final double widgetHeight;
 
-  ValueChanged<WHUCalendarItem?>? onChange;
+  late final ValueChanged<WHUCalendarItem?>? onChange;
 
   @override
   State<PCUCalendarCell> createState() {
