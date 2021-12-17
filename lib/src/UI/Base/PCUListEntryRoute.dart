@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'PCUSingleActionRoute.dart';
+
 import '../../Context/PCCGloable.dart';
+import 'PCUSingleActionRoute.dart';
 
 class PCUListEntryRoute extends StatefulWidget {
   PCUListEntryRoute(this.dataList, {this.title, Key? key}) : super(key: key);
@@ -17,9 +18,9 @@ class PCUListEntryRouteState extends State<PCUListEntryRoute> {
   Widget build(BuildContext context) {
     return PCUSingleActionRoute(
       title: null != widget.title ? widget.title : "请选择",
-      strActionTitle: '',
-      actionCall: null,
-      floatingCall: null,
+      rightTopTitle: '',
+      rightTopAction: null,
+      floatingAction: null,
       body: ListView.separated(
           itemCount: widget.dataList.length,
           // itemExtent: 50,

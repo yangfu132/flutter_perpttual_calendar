@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../Context/PCCGloable.dart';
 import 'PCUDateButton.dart';
 import 'PCUDateTile.dart';
@@ -6,16 +7,16 @@ import 'PCUDateTile.dart';
 class PCUSingleActionRoute extends StatefulWidget {
   PCUSingleActionRoute(
       {Key? key,
-      this.title,
-      this.strActionTitle,
-      this.actionCall,
-      this.floatingCall,
+      this.title, //顶部的文案
+      this.rightTopTitle, //右上角按钮的文案
+      this.rightTopAction, //右上角按钮的相应操作
+      this.floatingAction, //右上角按钮的相应操作
       this.body})
       : super(key: key);
   final String? title;
-  final String? strActionTitle;
-  final VoidCallback? actionCall;
-  final VoidCallback? floatingCall;
+  final String? rightTopTitle;
+  final VoidCallback? rightTopAction;
+  final VoidCallback? floatingAction;
   final Widget? body;
   @override
   _PCUSingleActionRouteState createState() => _PCUSingleActionRouteState();
@@ -45,12 +46,12 @@ class _PCUSingleActionRouteState extends State<PCUSingleActionRoute> {
                 }),
           ),
           actions: [
-            PCUDateButton(widget.strActionTitle!, widget.actionCall!),
+            PCUDateButton(widget.rightTopTitle!, widget.rightTopAction!),
           ],
         ),
         body: widget.body,
         floatingActionButton: FloatingActionButton(
-          onPressed: widget.floatingCall,
+          onPressed: widget.floatingAction,
           backgroundColor: Colors.white,
           tooltip: 'Increment',
           child: Icon(

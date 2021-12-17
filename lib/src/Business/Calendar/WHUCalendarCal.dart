@@ -1,6 +1,5 @@
 import '../../Service/PWSDateTimeService.dart';
 import 'WHUCalendarItem.dart';
-// import '../PerpttualCalendar/PWBCalendarBusiness.dart';
 
 class WHUCalendarCal {
   WHUCalendarCal({this.curDateStr});
@@ -78,7 +77,7 @@ class WHUCalendarCal {
   }
 
   Map calendarMapWith(DateTime date) {
-    Map mdic = {};
+    Map monthDic = {};
     List dateArr = [];
 
     //如果这个月的第一天不是星期一，需要在前面补充天数
@@ -97,7 +96,7 @@ class WHUCalendarCal {
       }
     }
     //将本月的所有天数变为文本
-    mdic['monthStr'] = PWSDateTimeService.stringFromDate(date, 'yyyy年MM月');
+    monthDic['monthStr'] = PWSDateTimeService.stringFromDate(date, 'yyyy年MM月');
     int days = getDaysInMonth(date.year, date.month);
     for (int i = 0; i < days; i++) {
       WHUCalendarItem item = WHUCalendarItem();
@@ -122,8 +121,8 @@ class WHUCalendarCal {
         dateArr.add(item);
       }
     }
-    mdic['dataArr'] = dateArr;
-    return mdic;
+    monthDic['dataArr'] = dateArr;
+    return monthDic;
   }
 
   Map getCalendarMapWith(String dateStr) {
