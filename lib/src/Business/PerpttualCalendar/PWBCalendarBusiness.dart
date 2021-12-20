@@ -7,7 +7,7 @@ import 'PWBTenGodModel.dart';
 // import 'package lunar_solar_converter.dart';
 // import 'package:lunar_calendar_converter/lunar_solar_converter.dart';
 
-//类注释：万年历业务逻辑
+//类注释：历法业务逻辑
 class PWBCalendarBusiness {
   PWBCalendarBusiness(DateTime theDate) {
     this.theDate = theDate.toLocal();
@@ -118,7 +118,7 @@ class PWBCalendarBusiness {
     return PWBEarthBranchModel(PWBEarchBranchEnum.values[index]);
   }
 
-  //方法注释：日干函数
+  //方法注释：日干
   PWBSkyTrunkModel skyTrunkDay() {
     String start = "1921-01-01 00:00:00"; // 甲子日起算
     DateTime dateStart = DateTime.parse(start).toLocal();
@@ -128,7 +128,7 @@ class PWBCalendarBusiness {
     return PWBSkyTrunkModel(PWBSkyTrunkEnum.values[index]);
   }
 
-  //方法注释：日支函数
+  //方法注释：日支
   PWBEarthBranchModel earthBranchDay() {
     String start = "1921-01-01 00:00:00"; // 甲子日起算
     DateTime dateStart = DateTime.parse(start).toLocal();
@@ -138,7 +138,7 @@ class PWBCalendarBusiness {
     return PWBEarthBranchModel(PWBEarchBranchEnum.values[index]);
   }
 
-  //方法注释：日干,採子正(0時)換日法，從日干轉換
+  //方法注释：时干,採子正(0時)換日法，從日干轉換
   PWBSkyTrunkModel skyTrunkHour() {
     int dayIndex = skyTrunkDay().value.index % 5; //find(天干表, 日干)! % 5
     int hourIndex = earthBranchHour().value.index;
@@ -146,7 +146,7 @@ class PWBCalendarBusiness {
     return PWBSkyTrunkModel(PWBSkyTrunkEnum.values[index]);
   }
 
-  //方法注释：日支:  以節氣轉換為準
+  //方法注释：时支:  以節氣轉換為準
   PWBEarthBranchModel earthBranchHour() {
     int hour = this.theDate.hour;
     int index = ((hour == 23 ? 0 : hour) + 1) ~/ 2;
@@ -189,6 +189,8 @@ class PWBCalendarBusiness {
 
 //基础函数--------------------------------------------------------------------
 
+  ///GregorianCalendar提供了世界上大多数国家/地区使用的标准日历系统。也就是现行公历。
+  ///由意大利医生兼哲学家里利乌斯（Aloysius Lilius）改革儒略历制定的历法，由教皇格列高利十三世在1582年颁行。
   int ifGregorian(int y, int m, int d, int option) {
     if (option == 1) {
       if (y > 1582 ||

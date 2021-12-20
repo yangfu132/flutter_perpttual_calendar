@@ -5,5 +5,7 @@
 ### null safety:
 ### warning:
 Export files
+### [1.0.0+6] - 2021-12-20
+add Document
 
-[1.0.0+5] https://github.com/yangfu132/flutter_perpttual_calendar.gity
+[1.0.0+6] https://github.com/yangfu132/flutter_perpttual_calendar.gity
