@@ -15,7 +15,7 @@ For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
-///暂时日历控件的example,可以通过点击"选择日期"进入选择日期界面
+///展示日历的example,可以通过点击"选择日期"进入选择日期界面
 example
 
 ///选择日期界面
@@ -75,7 +75,7 @@ WHUCalendarCal
 
 ///类注释：历法业务逻辑
 PWBCalendarBusiness
-    /// 公曆
+    ///方法注释： 返回传入日期的公曆描述
     String stringFromDate()
 
     ///方法注释：年干
