@@ -122,7 +122,7 @@ class PWBCalendarBusiness {
   PWBSkyTrunkModel skyTrunkDay() {
     String start = "1921-01-01 00:00:00"; // 甲子日起算
     DateTime dateStart = DateTime.parse(start).toLocal();
-    Duration duration = dateStart.difference(this.theDate);
+    Duration duration = this.theDate.difference(dateStart);
     int index = duration.inDays % 10;
     index = index >= 0 ? index : index + 10;
     return PWBSkyTrunkModel(PWBSkyTrunkEnum.values[index]);
@@ -132,7 +132,7 @@ class PWBCalendarBusiness {
   PWBEarthBranchModel earthBranchDay() {
     String start = "1921-01-01 00:00:00"; // 甲子日起算
     DateTime dateStart = DateTime.parse(start).toLocal();
-    Duration duration = dateStart.difference(this.theDate);
+    Duration duration = this.theDate.difference(dateStart);
     int index = duration.inDays % 12;
     index = index >= 0 ? index : index + 12;
     return PWBEarthBranchModel(PWBEarchBranchEnum.values[index]);
