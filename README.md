@@ -1,6 +1,16 @@
 # flutter_perpttual_calendar
 
+#example
+#A Flutter plugin for showing rainbows.
+#Use machine learning to categorize bird sounds.
+#Does not work on iOS versions below 10.3.
 基于flutter&Dart的万年历
+
+#增加动画展示界面
+
+##Features
+Use this plugin in your Flutter app to:
+#TODO：在这里添加列表
 
 ## Getting Started
 
