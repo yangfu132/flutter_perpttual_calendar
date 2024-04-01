@@ -16,7 +16,7 @@ class PWBElementModel {
   //方法注释：五行代表的颜色
   Color colorValue() {
     Color result;
-    switch (this.value) {
+    switch (value) {
       case PWBElementEnum.MU:
         {
           result = Colors.green;
@@ -55,7 +55,7 @@ class PWBElementModel {
   //方法注释：五行的中文名
   String? stringName() {
     String? result;
-    switch (this.value) {
+    switch (value) {
       case PWBElementEnum.MU:
         {
           result = "木";
@@ -85,7 +85,7 @@ class PWBElementModel {
         {
           //1 == 2 的写法有不妥之处，不能表达含义；
           //此处的意思是default为异常分支，应该为colog
-          assert(1 == 2, 'stringName:${this.value}');
+          assert(1 == 2, 'stringName:$value');
           break;
         }
     }

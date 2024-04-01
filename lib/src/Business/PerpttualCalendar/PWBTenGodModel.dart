@@ -22,7 +22,7 @@ class PWBTenGodModel {
   //方法注释：十神的中文名称
   String? stringName() {
     String? result;
-    switch (this.value) {
+    switch (value) {
       case TenGod_BiJian: // 比肩
         {
           result = "比肩";
@@ -77,7 +77,7 @@ class PWBTenGodModel {
         {
           //1 == 2 的写法有不妥之处，不能表达含义；
           //此处的意思是default为异常分支,应该为colog
-          assert(1 == 2, 'stringName:${this.value}');
+          assert(1 == 2, 'stringName:$value');
           break;
         }
     }
@@ -88,7 +88,7 @@ class PWBTenGodModel {
   //方法注释：十神的中文简称
   String? shortName() {
     String? result;
-    switch (this.value) {
+    switch (value) {
       case TenGod_BiJian: // 比肩
         {
           result = "比";
@@ -143,7 +143,7 @@ class PWBTenGodModel {
         {
           //1 == 2 的写法有不妥之处，不能表达含义；
           //此处的意思是default为异常分支,应该为colog
-          assert(1 == 2, 'shortName:${this.value}');
+          assert(1 == 2, 'shortName:$value');
           break;
         }
     }
@@ -154,7 +154,7 @@ class PWBTenGodModel {
   //方法注释：十神的中文名称，展示时需要竖着展示
   String? verticalName() {
     String? result;
-    switch (this.value) {
+    switch (value) {
       case TenGod_BiJian: // 比肩
         {
           result = "比\n肩";
@@ -209,7 +209,7 @@ class PWBTenGodModel {
         {
           //1 == 2 的写法有不妥之处，不能表达含义；
           //此处的意思是default为异常分支,应该为colog
-          assert(1 == 2, 'verticalName:${this.value}');
+          assert(1 == 2, 'verticalName:$value');
           break;
         }
     }

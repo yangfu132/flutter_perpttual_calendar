@@ -26,7 +26,7 @@ class PWBSkyTrunkModel {
   // 天干名
   String? stringName() {
     String? result;
-    switch (this.value) {
+    switch (value) {
       case PWBSkyTrunkEnum.JIA:
         {
           result = "甲";
@@ -81,7 +81,7 @@ class PWBSkyTrunkModel {
         {
           //1 == 2 的写法有不妥之处，不能表达含义；
           //此处的意思是default为异常分支,应该为colog
-          assert(1 == 2, 'stringName:${this.value}');
+          assert(1 == 2, 'stringName:$value');
           break;
         }
     }
@@ -92,7 +92,7 @@ class PWBSkyTrunkModel {
 //方法注释：五行
   PWBElementModel? elementValue() {
     PWBElementModel? result;
-    switch (this.value) {
+    switch (value) {
       case PWBSkyTrunkEnum.JIA: //甲
       case PWBSkyTrunkEnum.YI: //乙
         {
@@ -127,7 +127,7 @@ class PWBSkyTrunkModel {
         {
           //1 == 2 的写法有不妥之处，不能表达含义；
           //此处的意思是default为异常分支，应该为colog
-          assert(1 == 2, 'elementValue:${this.value}');
+          assert(1 == 2, 'elementValue:$value');
           break;
         }
     }
@@ -138,7 +138,7 @@ class PWBSkyTrunkModel {
   //方法注释：计算十神的基本值，阳干为正，阴干为负
   int biValue() {
     int result = 0;
-    switch (this.value) {
+    switch (value) {
       case PWBSkyTrunkEnum.JIA: // 甲
       case PWBSkyTrunkEnum.BING: // 丙
       case PWBSkyTrunkEnum.WU: // 戊
@@ -161,7 +161,7 @@ class PWBSkyTrunkModel {
         {
           //1 == 2 的写法有不妥之处，不能表达含义；
           //此处的意思是default为异常分支,应该为colog
-          assert(1 == 2, 'biValue:${this.value}');
+          assert(1 == 2, 'biValue:$value');
           break;
         }
     }

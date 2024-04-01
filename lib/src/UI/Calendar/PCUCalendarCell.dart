@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_perpttual_calendar/src/Business/Calendar/WHUCalendarItem.dart';
 
-import '../../Business/Calendar/WHUCalendarItem.dart';
+// import '../../Business/Calendar/WHUCalendarItem.dart';
 import '../../Context/PCCContext.dart';
 import '../Base/PCUTriangleWidget.dart';
 
 class PCUCalendarCell extends StatefulWidget {
-  PCUCalendarCell(this.widgetHeight);
-  String? lbl;
-  String? dbl;
-  late bool isToday;
-  late bool isDayInCurMonth;
-  bool isHighlighted = false;
-  WHUCalendarItem? dateItem;
-  final double widgetHeight;
+  const PCUCalendarCell(this.widgetHeight, {super.key});
+  late final String? lbl;
+  late final String? dbl;
+  late final bool isToday;
+  late final bool isDayInCurMonth;
+  late final bool isHighlighted = false;
+  late final WHUCalendarItem? dateItem;
+  late final double widgetHeight;
 
-  ValueChanged<WHUCalendarItem?>? onChange;
+  late final ValueChanged<WHUCalendarItem?>? onChange;
 
   @override
   State<PCUCalendarCell> createState() {
@@ -51,7 +52,7 @@ class _PCUCalendarCellState extends State<PCUCalendarCell> {
       child: Container(
         color: widget.isHighlighted ? colorHighlight : Colors.white,
         child: Padding(
-          padding: EdgeInsets.all(1),
+          padding: const EdgeInsets.all(1),
           child: Center(
             child: Stack(
               children: [
@@ -109,7 +110,7 @@ class _PCUCalendarCellState extends State<PCUCalendarCell> {
                       Align(
                         alignment: Alignment.topRight,
                         child: Padding(
-                          padding: EdgeInsets.only(right: 1),
+                          padding: const EdgeInsets.only(right: 1),
                           child: Text(
                             '天',
                             textAlign: TextAlign.left,

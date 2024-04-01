@@ -7,11 +7,11 @@ import 'PWBTenGodModel.dart';
 // import 'package lunar_solar_converter.dart';
 // import 'package:lunar_calendar_converter/lunar_solar_converter.dart';
 
-//类注释：万年历业务逻辑
+//类注释：历法业务逻辑
 class PWBCalendarBusiness {
   PWBCalendarBusiness(DateTime theDate) {
     this.theDate = theDate.toLocal();
-    this.solarTerms = computeSolarTerm(this.theDate.month);
+    solarTerms = computeSolarTerm(this.theDate.month);
   }
   //属性注释：日期对象
   late DateTime theDate;
@@ -21,7 +21,7 @@ class PWBCalendarBusiness {
 
 // 公曆
   String stringFromDate() {
-    return "${this.theDate.year.toString()}-${this.theDate.month.toString().padLeft(2, '0')}-${this.theDate.day.toString().padLeft(2, '0')} ${this.theDate.hour.toString().padLeft(2, '0')}:${this.theDate.minute.toString().padLeft(2, '0')}:${this.theDate.second.toString().padLeft(2, '0')}";
+    return "${theDate.year.toString()}-${theDate.month.toString().padLeft(2, '0')}-${theDate.day.toString().padLeft(2, '0')} ${theDate.hour.toString().padLeft(2, '0')}:${theDate.minute.toString().padLeft(2, '0')}:${theDate.second.toString().padLeft(2, '0')}";
   }
 
 // // 農曆
@@ -48,15 +48,15 @@ class PWBCalendarBusiness {
 
   //方法注释：年干
   PWBSkyTrunkModel skyTrunkYear() {
-    int index = (this.theDate.year - 4) % 10;
-    if (1 == this.theDate.month) {
+    int index = (theDate.year - 4) % 10;
+    if (1 == theDate.month) {
       if (0 == index) {
         index = 9;
       } else {
         index -= 1;
       }
-    } else if (2 == this.theDate.month) {
-      if (this.theDate.isBefore(this.solarTerms[0].termDate)) {
+    } else if (2 == theDate.month) {
+      if (theDate.isBefore(solarTerms[0].termDate)) {
         if (index == 0) {
           index = 9;
         } else {
@@ -69,15 +69,15 @@ class PWBCalendarBusiness {
 
   //方法注释：年支
   PWBEarthBranchModel earthBranchYear() {
-    int index = (this.theDate.year - 4) % 12;
-    if (this.theDate.month == 1) {
+    int index = (theDate.year - 4) % 12;
+    if (theDate.month == 1) {
       if (index == 0) {
         index = 11;
       } else {
         index -= 1;
       }
-    } else if (this.theDate.month == 2) {
-      if (this.theDate.isBefore(this.solarTerms[0].termDate)) {
+    } else if (theDate.month == 2) {
+      if (theDate.isBefore(solarTerms[0].termDate)) {
         if (index == 0) {
           index = 11;
         } else {
@@ -106,9 +106,9 @@ class PWBCalendarBusiness {
 
   //方法注释：月地支，以節氣轉換為準
   PWBEarthBranchModel earthBranchMonth() {
-    int index = this.theDate.month % 12;
+    int index = theDate.month % 12;
 
-    if (this.theDate.isBefore(this.solarTerms[0].termDate)) {
+    if (theDate.isBefore(solarTerms[0].termDate)) {
       if (index == 0) {
         index = 11;
       } else {
@@ -118,27 +118,27 @@ class PWBCalendarBusiness {
     return PWBEarthBranchModel(PWBEarchBranchEnum.values[index]);
   }
 
-  //方法注释：日干函数
+  //方法注释：日干
   PWBSkyTrunkModel skyTrunkDay() {
     String start = "1921-01-01 00:00:00"; // 甲子日起算
     DateTime dateStart = DateTime.parse(start).toLocal();
-    Duration duration = dateStart.difference(this.theDate);
+    Duration duration = theDate.difference(dateStart);
     int index = duration.inDays % 10;
     index = index >= 0 ? index : index + 10;
     return PWBSkyTrunkModel(PWBSkyTrunkEnum.values[index]);
   }
 
-  //方法注释：日支函数
+  //方法注释：日支
   PWBEarthBranchModel earthBranchDay() {
     String start = "1921-01-01 00:00:00"; // 甲子日起算
     DateTime dateStart = DateTime.parse(start).toLocal();
-    Duration duration = dateStart.difference(this.theDate);
+    Duration duration = theDate.difference(dateStart);
     int index = duration.inDays % 12;
     index = index >= 0 ? index : index + 12;
     return PWBEarthBranchModel(PWBEarchBranchEnum.values[index]);
   }
 
-  //方法注释：日干,採子正(0時)換日法，從日干轉換
+  //方法注释：时干,採子正(0時)換日法，從日干轉換
   PWBSkyTrunkModel skyTrunkHour() {
     int dayIndex = skyTrunkDay().value.index % 5; //find(天干表, 日干)! % 5
     int hourIndex = earthBranchHour().value.index;
@@ -146,9 +146,9 @@ class PWBCalendarBusiness {
     return PWBSkyTrunkModel(PWBSkyTrunkEnum.values[index]);
   }
 
-  //方法注释：日支:  以節氣轉換為準
+  //方法注释：时支:  以節氣轉換為準
   PWBEarthBranchModel earthBranchHour() {
-    int hour = this.theDate.hour;
+    int hour = theDate.hour;
     int index = ((hour == 23 ? 0 : hour) + 1) ~/ 2;
     return PWBEarthBranchModel(PWBEarchBranchEnum.values[index]);
   }
@@ -189,6 +189,8 @@ class PWBCalendarBusiness {
 
 //基础函数--------------------------------------------------------------------
 
+  ///GregorianCalendar提供了世界上大多数国家/地区使用的标准日历系统。也就是现行公历。
+  ///由意大利医生兼哲学家里利乌斯（Aloysius Lilius）改革儒略历制定的历法，由教皇格列高利十三世在1582年颁行。
   int ifGregorian(int y, int m, int d, int option) {
     if (option == 1) {
       if (y > 1582 ||
@@ -218,9 +220,9 @@ class PWBCalendarBusiness {
     List<int> monL = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
     int ifG = ifGregorian(y, m, d, 1);
     if (1 == ifG) {
-      if ((y % 100 != 0 && y % 4 == 0) || (y % 400 == 0))
+      if ((y % 100 != 0 && y % 4 == 0) || (y % 400 == 0)) {
         monL[2] += 1;
-      else if (y % 4 == 0) {
+      } else if (y % 4 == 0) {
         monL[2] += 1;
       }
     }
@@ -307,14 +309,14 @@ class PWBCalendarBusiness {
   List<PWBSolarTermModel> computeSolarTerm(int month) {
     List<PWBSolarTermModel> result = [];
     for (int n = (month * 2 - 1); n <= month * 2; n++) {
-      double termDays = term(this.theDate.year, n, true);
-      int mdays = antiDayDifference(this.theDate.year, termDays.toInt());
+      double termDays = term(theDate.year, n, true);
+      int mdays = antiDayDifference(theDate.year, termDays.toInt());
       int termDay = mdays % 100;
       int hour = (tail(termDays) * 24).toInt();
       int minute = ((tail(termDays) * 24 - hour) * 60).toInt();
 
       DateTime termDate = DateTime(
-          this.theDate.year, this.theDate.month, termDay, hour, minute);
+          theDate.year, theDate.month, termDay, hour, minute);
 
       if (n < 3) {
         result.add(PWBSolarTermModel(

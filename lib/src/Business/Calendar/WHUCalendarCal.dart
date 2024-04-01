@@ -1,84 +1,36 @@
+import 'package:flutter_perpttual_calendar/src/Business/Calendar/WHUCalendarItem.dart';
+
 import '../../Service/PWSDateTimeService.dart';
-import 'WHUCalendarItem.dart';
-// import '../PerpttualCalendar/PWBCalendarBusiness.dart';
 
 class WHUCalendarCal {
-  WHUCalendarCal({this.curDateStr});
+  WHUCalendarCal({
+    this.curDateStr,
+  });
   String? curDateStr;
   Map? _preCalMap;
   Map? _nextCalMap;
   Map? _currentCalMap;
 
+  ///获取当前的时间，默认格式为'yyyy-MM-dd'
   String? currentDateStr() {
-    if (null == curDateStr) {
-      this.curDateStr =
-          PWSDateTimeService.stringFromDate(DateTime.now(), 'yyyy-MM-dd');
-    }
-    return this.curDateStr;
+    curDateStr ??= PWSDateTimeService.stringFromDate(DateTime.now(), 'yyyy-MM-dd');
+    return curDateStr;
   }
 
+  ///根据传入日期，初始化日历的上月、当月、下月数据
   Map? loadDataWith(String dateStr) {
     DateTime dateTime = PWSDateTimeService.dateFromString(dateStr);
     String strMonth = PWSDateTimeService.stringFromDate(dateTime, 'yyyy年MM月');
-    this._currentCalMap =
+    _currentCalMap =
         calendarMapWith(PWSDateTimeService.dateFromString(dateStr));
-    if (this._preCalMap == null) {
-      this._preCalMap = getPreCalendarMap(strMonth);
-    }
-    if (this._nextCalMap == null) {
-      this._nextCalMap = getNextCalendarMap(strMonth);
-    }
+    _preCalMap ??= getPreCalendarMap(strMonth);
+    _nextCalMap ??= getNextCalendarMap(strMonth);
     return _currentCalMap;
   }
 
-  void getCalendarMapWithCallBack(
-      String dateStr, void Function(Map? dic) completeBlk) {
-    String nextMonthStr = nextMonthOfMonthString(dateStr);
-    String preMonthStr = preMonthOfMonthString(dateStr);
-    if (this._preCalMap != null && (this._preCalMap!["monthStr"] == dateStr)) {
-      Map? tempCur = this._currentCalMap;
-      this._currentCalMap = this._preCalMap;
-      completeBlk(this._currentCalMap);
-      if (tempCur != null && (tempCur["monthStr"] == nextMonthStr)) {
-        this._nextCalMap = tempCur;
-      } else {
-        this._nextCalMap = null;
-      }
-      this._preCalMap = null;
-    } else if (this._nextCalMap != null &&
-        (this._nextCalMap!["monthStr"] == dateStr)) {
-      Map? tempCur = this._currentCalMap;
-      this._currentCalMap = this._nextCalMap;
-      completeBlk(this._currentCalMap);
-      if (tempCur != null && (tempCur["monthStr"] == preMonthStr)) {
-        this._preCalMap = tempCur;
-      } else {
-        this._preCalMap = null;
-      }
-      this._nextCalMap = null;
-    } else {
-      if (this._currentCalMap!["monthStr"] == dateStr) {
-        completeBlk(this._currentCalMap);
-      } else {
-        this._currentCalMap =
-            calendarMapWith(PWSDateTimeService.dateFromMonthString(dateStr));
-        completeBlk(this._currentCalMap);
-      }
-      this._nextCalMap = null;
-      this._preCalMap = null;
-    }
-
-    if (this._preCalMap == null) {
-      this._preCalMap = getPreCalendarMap(dateStr);
-    }
-
-    if (this._nextCalMap == null) {
-      this._nextCalMap = getNextCalendarMap(dateStr);
-    }
-  }
-
+  ///根据传入data生成日历数据
   Map calendarMapWith(DateTime date) {
-    Map mdic = {};
+    Map monthDic = {};
     List dateArr = [];
 
     //如果这个月的第一天不是星期一，需要在前面补充天数
@@ -88,7 +40,7 @@ class WHUCalendarCal {
       if (weekGap < 0) weekGap += 7;
       for (int i = 0; i < weekGap; i++) {
         DateTime theDate =
-            firstDayOfMonth.add(new Duration(days: -weekGap + i));
+            firstDayOfMonth.add(Duration(days: -weekGap + i));
         WHUCalendarItem item = WHUCalendarItem();
         item.dateStr = PWSDateTimeService.stringFromDate(theDate, 'yyyy-MM-dd');
         item.day = -theDate.day;
@@ -97,11 +49,11 @@ class WHUCalendarCal {
       }
     }
     //将本月的所有天数变为文本
-    mdic['monthStr'] = PWSDateTimeService.stringFromDate(date, 'yyyy年MM月');
+    monthDic['monthStr'] = PWSDateTimeService.stringFromDate(date, 'yyyy年MM月');
     int days = getDaysInMonth(date.year, date.month);
     for (int i = 0; i < days; i++) {
       WHUCalendarItem item = WHUCalendarItem();
-      DateTime theDate = firstDayOfMonth.add(new Duration(days: i));
+      DateTime theDate = firstDayOfMonth.add(Duration(days: i));
       item.dateStr = PWSDateTimeService.stringFromDate(theDate, 'yyyy-MM-dd');
       item.day = theDate.day;
       // lunarForSolarYear(item, theDate);
@@ -114,7 +66,7 @@ class WHUCalendarCal {
     if (lastDayOfMonth.weekday != 7) {
       int weekGap = 8 - lastDayOfMonth.weekday;
       for (int i = 1; i < weekGap; i++) {
-        DateTime theDate = firstDayOfMonth.add(new Duration(days: i));
+        DateTime theDate = firstDayOfMonth.add(Duration(days: i));
         WHUCalendarItem item = WHUCalendarItem();
         item.dateStr = PWSDateTimeService.stringFromDate(theDate, 'yyyy-MM-dd');
         item.day = -i;
@@ -122,42 +74,88 @@ class WHUCalendarCal {
         dateArr.add(item);
       }
     }
-    mdic['dataArr'] = dateArr;
-    return mdic;
+    monthDic['dataArr'] = dateArr;
+    return monthDic;
   }
 
-  Map getCalendarMapWith(String dateStr) {
-    DateTime date = DateTime.parse(dateStr);
-    return calendarMapWith(date);
+  ///根据转入的日期，切换上月、当月、下月数据；
+  void turnCalendarMapWithCallBack(
+    String dateStr,
+    void Function(Map? dic) completeBlk,
+  ) {
+    String nextMonthStr = titleOfNextMonth(dateStr);
+    String preMonthStr = titleOfPreMonth(dateStr);
+    if (_preCalMap != null && (_preCalMap!["monthStr"] == dateStr)) {
+      Map? tempCur = _currentCalMap;
+      _currentCalMap = _preCalMap;
+      completeBlk(_currentCalMap);
+      if (tempCur != null && (tempCur["monthStr"] == nextMonthStr)) {
+        _nextCalMap = tempCur;
+      } else {
+        _nextCalMap = null;
+      }
+      _preCalMap = null;
+    } else if (_nextCalMap != null &&
+        (_nextCalMap!["monthStr"] == dateStr)) {
+      Map? tempCur = _currentCalMap;
+      _currentCalMap = _nextCalMap;
+      completeBlk(_currentCalMap);
+      if (tempCur != null && (tempCur["monthStr"] == preMonthStr)) {
+        _preCalMap = tempCur;
+      } else {
+        _preCalMap = null;
+      }
+      _nextCalMap = null;
+    } else {
+      if (_currentCalMap!["monthStr"] == dateStr) {
+        completeBlk(_currentCalMap);
+      } else {
+        _currentCalMap =
+            calendarMapWith(PWSDateTimeService.dateFromMonthString(dateStr));
+        completeBlk(_currentCalMap);
+      }
+      _nextCalMap = null;
+      _preCalMap = null;
+    }
+
+    _preCalMap ??= getPreCalendarMap(dateStr);
+
+    _nextCalMap ??= getNextCalendarMap(dateStr);
   }
 
-  void preMonthCalendar(String dateStr, void Function(Map?) completionBlk) {
-    String preMonthStr = preMonthOfMonthString(dateStr);
-    getCalendarMapWithCallBack(preMonthStr, completionBlk);
-  }
-
-  void nextMonthCalendar(String dateStr, void Function(Map?) completionBlk) {
-    String nextMonthStr = nextMonthOfMonthString(dateStr);
-    getCalendarMapWithCallBack(nextMonthStr, completionBlk);
-  }
-
+  ///生成上个月数据
   Map getPreCalendarMap(String dateStr) {
     DateTime date = PWSDateTimeService.dateFromMonthString(dateStr);
     return calendarMapWith(getPreMonth(date));
   }
 
+  ///生成下个月数据
   Map getNextCalendarMap(String dateStr) {
     DateTime date = PWSDateTimeService.dateFromMonthString(dateStr);
     return calendarMapWith(getLastMonth(date));
   }
 
-  String preMonthOfMonthString(String dateStr) {
+  ///切换到上个月
+  void preMonthCalendar(String dateStr, void Function(Map?) completionBlk) {
+    String preMonthStr = titleOfPreMonth(dateStr);
+    turnCalendarMapWithCallBack(preMonthStr, completionBlk);
+  }
+
+  ///切换到下个月
+  void nextMonthCalendar(String dateStr, void Function(Map?) completionBlk) {
+    String nextMonthStr = titleOfNextMonth(dateStr);
+    turnCalendarMapWithCallBack(nextMonthStr, completionBlk);
+  }
+
+  ///上个月的名字
+  String titleOfPreMonth(String dateStr) {
     DateTime date = PWSDateTimeService.dateFromMonthString(dateStr);
     DateTime preDate = getPreMonth(date);
     return PWSDateTimeService.stringFromDate(preDate, 'yyyy年MM月');
   }
 
-  String nextMonthOfMonthString(String dateStr) {
+  ///下个月的名字
+  String titleOfNextMonth(String dateStr) {
     DateTime date = PWSDateTimeService.dateFromMonthString(dateStr);
     DateTime preDate = getLastMonth(date);
     return PWSDateTimeService.stringFromDate(preDate, 'yyyy年MM月');
@@ -206,6 +204,7 @@ class WHUCalendarCal {
   //   }
   // }
 
+  ///假期
   String? getCommonHoliday(DateTime calendarDay) {
     if (calendarDay.month == 1 && calendarDay.day == 1) {
       return "元旦";
@@ -251,18 +250,20 @@ class WHUCalendarCal {
 
 //新增加方法--------------------------------------------------------------------------
 
-  //方法注释：获得当前月的第一天
+  ///获得当前月的第一天
   DateTime getFirstDayOfMonth(DateTime date) {
     DateTime localDate = date.toLocal();
     return DateTime.utc(localDate.year, localDate.month, 1);
   }
 
+  ///获得当前月的最后一天
   DateTime getLastDayOfMonth(DateTime date) {
     DateTime firstDate = getFirstDayOfMonth(date);
     return firstDate
-        .add(new Duration(days: getDaysInMonth(date.year, date.month) - 1));
+        .add(Duration(days: getDaysInMonth(date.year, date.month) - 1));
   }
 
+  ///获得上个月的DateTime
   DateTime getPreMonth(DateTime date) {
     int year = date.year;
     int month = date.month;
@@ -275,6 +276,7 @@ class WHUCalendarCal {
     return DateTime(year, month, 1);
   }
 
+  ///获得下个月的DateTime
   DateTime getLastMonth(DateTime date) {
     int year = date.year;
     int month = date.month;
@@ -300,6 +302,7 @@ class WHUCalendarCal {
     return _daysInMonth[month - 1];
   }
 
+  /// 每个月的天数
   static const List<int> _daysInMonth = <int>[
     31,
     -1,

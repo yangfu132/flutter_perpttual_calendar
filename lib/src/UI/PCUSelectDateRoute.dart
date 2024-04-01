@@ -1,19 +1,22 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_perpttual_calendar/src/Business/Calendar/WHUCalendarItem.dart';
+
+import './Calendar/Calendar.dart';
+// import '../Business/Calendar/WHUCalendarItem.dart';
+import '../Business/PerpttualCalendar/PWBCalendarBusiness.dart';
 import '../Business/PerpttualCalendar/PWBEarthBranchModel.dart';
 import '../Business/PerpttualCalendar/PWBSkyTrunkModel.dart';
+import '../Service/PWSDateTimeService.dart';
 import 'Base/PCUDateButton.dart';
 import 'Base/PCUDateTile.dart';
-import 'Base/PCUSingleActionRoute.dart';
-import 'Base/PCUListEntryRoute.dart';
 import 'Base/PCUInfoWidget.dart';
-import './Calendar/Calendar.dart';
+import 'Base/PCUListEntryRoute.dart';
+import 'Base/PCUSingleActionRoute.dart';
 import 'Calendar/PCUCalendarWidget.dart';
-import '../Business/Calendar/WHUCalendarItem.dart';
-import '../Service/PWSDateTimeService.dart';
-import '../Business/PerpttualCalendar/PWBCalendarBusiness.dart';
 
 class PCUSelectDateRoute extends StatefulWidget {
-  PCUSelectDateRoute({Key? key, this.title}) : super(key: key);
+  const PCUSelectDateRoute({super.key, this.title});
   final String? title;
 
   @override
@@ -36,25 +39,25 @@ class _PCUSelectDateRouteState extends State<PCUSelectDateRoute> {
   Widget build(BuildContext context) {
     return PCUSingleActionRoute(
       title: widget.title,
-      strActionTitle: '重置',
-      actionCall: _onResetClicked,
-      floatingCall: _incrementCounter,
+      rightTopTitle: '重置',
+      rightTopAction: _onResetClicked,
+      floatingAction: _incrementCounter,
       body: Column(
         children: <Widget>[
           Padding(
-            padding: EdgeInsets.only(left: 15.0, top: 30),
+            padding: const EdgeInsets.only(left: 15.0, top: 30),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Row(
                   children: [
-                    PCUDateTile('时间：'),
+                    const PCUDateTile('时间：'),
                     PCUDateButton(_strDateBtn, () => _onCalendarClick(context)),
                   ],
                 ),
                 Row(
                   children: [
-                    PCUDateTile('月    ：'),
+                    const PCUDateTile('月    ：'),
                     PCUDateButton(_strMonthSkyBtn!,
                         _bMonthSkyBtn ? _onMonthSkyClicked : null),
                     PCUDateButton(_strMonthEarthBtn!,
@@ -63,7 +66,7 @@ class _PCUSelectDateRouteState extends State<PCUSelectDateRoute> {
                 ),
                 Row(
                   children: [
-                    PCUDateTile('日    ：'),
+                    const PCUDateTile('日    ：'),
                     PCUDateButton(
                         _strDaySkyBtn!, _bDaySkyBtn ? _onDaySkyClicked : null),
                     PCUDateButton(_strDayEarthBtn!,
@@ -86,7 +89,7 @@ class _PCUSelectDateRouteState extends State<PCUSelectDateRoute> {
               ],
             ),
           ),
-          Padding(
+          const Padding(
             padding: EdgeInsets.only(top: 21),
             child: PCUInfoWidget('如果没有设置，会默认为当前日期。'),
           ),
@@ -155,15 +158,17 @@ class _PCUSelectDateRouteState extends State<PCUSelectDateRoute> {
       builder: (context) {
         return Dialog(
             child: PCUCalendarWidget(
-          onChange: _onChnage,
+          onChange: _onChange,
         ));
       },
     );
   }
 
-  void _onChnage(WHUCalendarItem? dateItem) {
+  void _onChange(WHUCalendarItem? dateItem) {
     if (null == dateItem) return;
-    print('dateItem:${dateItem.dateStr}');
+    if (kDebugMode) {
+      print('dateItem:${dateItem.dateStr}');
+    }
     DateTime dateTime = PWSDateTimeService.dateFromString(dateItem.dateStr!);
 
     _strDateBtn =

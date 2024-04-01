@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/rendering/sliver.dart';
 import 'package:flutter/src/rendering/sliver_grid.dart';
+import 'package:flutter_perpttual_calendar/src/Business/Calendar/WHUCalendarItem.dart';
 
 import '../../Business/Calendar/WHUCalendarCal.dart';
-import '../../Business/Calendar/WHUCalendarItem.dart';
+// import '../../Business/Calendar/WHUCalendarItem.dart';
 import 'PCUCalendarCell.dart';
 
 class PCUCalendarGridView extends StatefulWidget {
-  PCUCalendarGridView({
+  PCUCalendarGridView({super.key, 
     required this.gridWidget,
     this.dataDic,
     this.strCurDate,
@@ -39,15 +40,17 @@ class _PCUCalendarWidgetState extends State<PCUCalendarGridView> {
       // cell.rowIndex = 1;
       // cell.total = days.length;
       WHUCalendarItem dateItem = value as WHUCalendarItem;
-      if (null != dateItem.holiday)
+      if (null != dateItem.holiday) {
         cell.dbl = dateItem.holiday;
-      else
+      } else {
         cell.dbl = dateItem.chineseCalendar;
+      }
 
-      if (dateItem.dateStr == widget.strCurDate)
+      if (dateItem.dateStr == widget.strCurDate) {
         cell.isToday = true;
-      else
+      } else {
         cell.isToday = false;
+      }
 
       if (dateItem.day < 0) {
         cell.lbl = '${-dateItem.day}';
@@ -71,19 +74,19 @@ class _PCUCalendarWidgetState extends State<PCUCalendarGridView> {
     return Container(
       height: itemHeight * nRowCount,
       width: widget.gridWidget + 1,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Colors.grey,
       ),
       child: Padding(
-        padding: EdgeInsets.only(left: 1, top: 1, bottom: 1),
+        padding: const EdgeInsets.only(left: 1, top: 1, bottom: 1),
         child: GridView.custom(
           shrinkWrap: true,
           gridDelegate: _DayPickerGridDelegate(
             mainAxisNumber: nRowCount,
             widgetHeight: itemHeight,
           ),
-          physics: NeverScrollableScrollPhysics(),
-          padding: EdgeInsets.all(0),
+          physics: const NeverScrollableScrollPhysics(),
+          padding: const EdgeInsets.all(0),
           childrenDelegate: SliverChildListDelegate(list as List<Widget>,
               addRepaintBoundaries: false),
         ),
@@ -118,5 +121,3 @@ class _DayPickerGridDelegate extends SliverGridDelegate {
     return false;
   }
 }
-
-const _DayPickerGridDelegate _kDayPickerGridDelegate = _DayPickerGridDelegate();

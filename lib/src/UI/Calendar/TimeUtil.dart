@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 // import 'package:flutter_xiaoe/utils/ScreenUtil.dart';
 // import 'package:flutter_xiaoe/utils/NetUtil.dart';
 // import 'package:flutter_xiaoe/config/Api.dart';
@@ -45,7 +44,7 @@ class TimeUtil {
     for (int i = localizations.firstDayOfWeekIndex; true; i = (i + 1) % 7) {
       final String weekday = localizations.narrowWeekdays[i];
       list.add(Flexible(
-          child: Container(
+          child: SizedBox(
         height: PCCContext.px2pt(80),
         child: Center(
           child: Text(

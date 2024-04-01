@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
+
 import '../../Context/PCCGloable.dart';
 import 'PCUDateButton.dart';
 import 'PCUDateTile.dart';
 
 class PCUSingleActionRoute extends StatefulWidget {
-  PCUSingleActionRoute(
-      {Key? key,
-      this.title,
-      this.strActionTitle,
-      this.actionCall,
-      this.floatingCall,
-      this.body})
-      : super(key: key);
+  const PCUSingleActionRoute(
+      {super.key,
+      this.title, //顶部的文案
+      this.rightTopTitle, //右上角按钮的文案
+      this.rightTopAction, //右上角按钮的相应操作
+      this.floatingAction, //右上角按钮的相应操作
+      this.body});
   final String? title;
-  final String? strActionTitle;
-  final VoidCallback? actionCall;
-  final VoidCallback? floatingCall;
+  final String? rightTopTitle;
+  final VoidCallback? rightTopAction;
+  final VoidCallback? floatingAction;
   final Widget? body;
   @override
   _PCUSingleActionRouteState createState() => _PCUSingleActionRouteState();
@@ -24,7 +24,7 @@ class PCUSingleActionRoute extends StatefulWidget {
 class _PCUSingleActionRouteState extends State<PCUSingleActionRoute> {
   @override
   Widget build(BuildContext context) {
-    double _screenScale =
+    double screenScale =
         MediaQuery.of(context).size.width / const_iPhone11_width;
 
     return Theme(
@@ -33,24 +33,24 @@ class _PCUSingleActionRouteState extends State<PCUSingleActionRoute> {
         appBar: AppBar(
           title: PCUDateTile(widget.title!),
           leading: ConstrainedBox(
-            constraints: BoxConstraints(
+            constraints: const BoxConstraints(
               minWidth: 50,
             ),
             child: IconButton(
-                icon: Icon(Icons.arrow_back_ios),
+                icon: const Icon(Icons.arrow_back_ios),
                 color: Color(int.parse(const_color_action)),
-                iconSize: 20 * _screenScale,
+                iconSize: 20 * screenScale,
                 onPressed: () {
                   Navigator.pop(context);
                 }),
           ),
           actions: [
-            PCUDateButton(widget.strActionTitle!, widget.actionCall!),
+            PCUDateButton(widget.rightTopTitle!, widget.rightTopAction!),
           ],
         ),
         body: widget.body,
         floatingActionButton: FloatingActionButton(
-          onPressed: widget.floatingCall,
+          onPressed: widget.floatingAction,
           backgroundColor: Colors.white,
           tooltip: 'Increment',
           child: Icon(

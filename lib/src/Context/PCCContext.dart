@@ -11,8 +11,8 @@ class PCCContext {
   }
 
   static double scale(double pt, context) {
-    double _screenScale = screenWidth(context) / const_iPhone11_width;
-    return pt * _screenScale;
+    double screenScale = screenWidth(context) / const_iPhone11_width;
+    return pt * screenScale;
   }
 
   static double screenWidth(context) {

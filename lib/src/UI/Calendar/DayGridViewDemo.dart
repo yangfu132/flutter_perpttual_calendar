@@ -9,17 +9,17 @@ class DayGridView extends StatefulWidget {
   final DateTime initDate;
   final DateTime selectDate;
 
-  int year;
-  int month;
+  final int year;
+  final int month;
 
-  ValueChanged? onChange;
+  final ValueChanged? onChange;
 
-  DayGridView({
+  const DayGridView({super.key, 
     Key? key,
-    /*required*/ required this.initDate,
-    /*required*/ required this.selectDate,
-    /*required*/ required this.year,
-    /*required*/ required this.month,
+    required this.initDate,
+    required this.selectDate,
+    required this.year,
+    required this.month,
     this.onChange,
   });
 
@@ -52,13 +52,13 @@ class _DayGridViewState extends State<DayGridView> {
               width: PCCContext.px2pt(60),
               height: PCCContext.px2pt(60),
               alignment: Alignment.center,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.blue,
                 borderRadius: BorderRadius.all(Radius.circular(100)),
               ),
               child: Text(
                 value.day.toString(),
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
               ),
             ),
           ),
@@ -74,7 +74,7 @@ class _DayGridViewState extends State<DayGridView> {
               alignment: Alignment.center,
               child: Text(
                 value.day.toString(),
-                style: TextStyle(color: Colors.blue),
+                style: const TextStyle(color: Colors.blue),
               ),
             ),
           );
@@ -86,7 +86,7 @@ class _DayGridViewState extends State<DayGridView> {
                 alignment: Alignment.center,
                 child: Text(
                   value.day.toString(),
-                  style: TextStyle(color: Colors.black38),
+                  style: const TextStyle(color: Colors.black38),
                 ),
               ),
             );
@@ -102,7 +102,7 @@ class _DayGridViewState extends State<DayGridView> {
                 child: Container(
                   child: Text(
                     value.day.toString(),
-                    style: TextStyle(color: Colors.black12),
+                    style: const TextStyle(color: Colors.black12),
                   ),
                 ),
               ),
@@ -117,13 +117,13 @@ class _DayGridViewState extends State<DayGridView> {
   @override
   Widget build(BuildContext context) {
     List<Widget> list = dayItems();
-    return Container(
+    return SizedBox(
       height: PCCContext.px2pt(600),
       child: GridView.custom(
           gridDelegate:
               _DayPickerGridDelegate(mainAxisNumber: list.length > 35 ? 6 : 5),
-          physics: NeverScrollableScrollPhysics(),
-          padding: EdgeInsets.all(0),
+          physics: const NeverScrollableScrollPhysics(),
+          padding: const EdgeInsets.all(0),
           childrenDelegate:
               SliverChildListDelegate(list, addRepaintBoundaries: false)),
     );
@@ -156,5 +156,3 @@ class _DayPickerGridDelegate extends SliverGridDelegate {
     return false;
   }
 }
-
-const _DayPickerGridDelegate _kDayPickerGridDelegate = _DayPickerGridDelegate();

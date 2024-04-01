@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class WHUCalendarYMSelectView extends StatefulWidget {
-  WHUCalendarYMSelectView(this.selectdDateStr);
+  const WHUCalendarYMSelectView(this.selectdDateStr, {super.key});
   final String selectdDateStr;
   @override
   State<StatefulWidget> createState() {
@@ -12,6 +12,6 @@ class WHUCalendarYMSelectView extends StatefulWidget {
 class _WHUCalendarYMSelectViewState extends State<WHUCalendarYMSelectView> {
   @override
   Widget build(BuildContext context) {
-    return Text('data');
+    return const Text('data');
   }
 }

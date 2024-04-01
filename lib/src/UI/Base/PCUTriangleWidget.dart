@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class PCUTriangleWidget extends StatefulWidget {
-  PCUTriangleWidget({/*required*/ required this.width, /*required*/ required this.height, this.child});
+  const PCUTriangleWidget({super.key, /*required*/ required this.width, /*required*/ required this.height, this.child});
   final double width;
   final double height;
   final Widget? child;

@@ -42,7 +42,7 @@ class PWBEarthBranchModel {
   String? stringName() {
     // 子=0,丑,寅,卯,辰,巳,午,未,申,酉,戌,亥,
     String? result;
-    switch (this.value) {
+    switch (value) {
       case PWBEarchBranchEnum.ZI: //子
         {
           result = "子";
@@ -107,7 +107,7 @@ class PWBEarthBranchModel {
         {
           //1 == 2 的写法有不妥之处，不能表达含义；
           //此处的意思是default为异常分支，应该为colog
-          assert(1 == 2, 'stringName:${this.value}');
+          assert(1 == 2, 'stringName:$value');
           break;
         }
     }
@@ -119,7 +119,7 @@ class PWBEarthBranchModel {
   PWBElementModel? elementValue() {
     // 子=0,丑,寅,卯,辰,巳,午,未,申,酉,戌,亥,
     PWBElementModel? result;
-    switch (this.value) {
+    switch (value) {
       case PWBEarchBranchEnum.YIN: //寅
       case PWBEarchBranchEnum.MAO: //卯
         {
@@ -156,7 +156,7 @@ class PWBEarthBranchModel {
         {
           //1 == 2 的写法有不妥之处，不能表达含义；
           //此处的意思是default为异常分支，应该为colog
-          assert(1 == 2, 'elementValue:${this.value}');
+          assert(1 == 2, 'elementValue:$value');
           break;
         }
     }
@@ -168,7 +168,7 @@ class PWBEarthBranchModel {
   String? shengxiaoValue() {
     // 子=0,丑,寅,卯,辰,巳,午,未,申,酉,戌,亥,
     String? result;
-    switch (this.value) {
+    switch (value) {
       case PWBEarchBranchEnum.ZI: //子
         {
           result = "鼠";
@@ -233,7 +233,7 @@ class PWBEarthBranchModel {
         {
           //1 == 2 的写法有不妥之处，不能表达含义；
           //此处的意思是default为异常分支，应该为colog
-          assert(1 == 2, 'shengxiaoValue:${this.value}');
+          assert(1 == 2, 'shengxiaoValue:$value');
           break;
         }
     }
@@ -244,7 +244,7 @@ class PWBEarthBranchModel {
   //方法注释：藏干
   List<PWBSkyTrunkModel>? skytrunkValue() {
     List<PWBSkyTrunkModel>? result;
-    switch (this.value) {
+    switch (value) {
       case PWBEarchBranchEnum.ZI: //子
         {
           result = [
@@ -349,7 +349,7 @@ class PWBEarthBranchModel {
         {
           //1 == 2 的写法有不妥之处，不能表达含义；
           //此处的意思是default为异常分支，应该为colog
-          assert(1 == 2, 'skytrunkValue:${this.value}');
+          assert(1 == 2, 'skytrunkValue:$value');
           break;
         }
     }

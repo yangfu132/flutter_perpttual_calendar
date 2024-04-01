@@ -1,12 +1,13 @@
 ﻿# Change Log
 ## [1.0.0+1] - 2020-07-21
-### Added:
-## [1.0.0+2] - 2020-07-21
-## [1.0.0+3] - 2020-07-21
-## [1.0.0+4] - 2020-07-21
+### Create Pub:基于flutter&Dart的万年历
+## [1.0.0+5] - 2021-05-24
 ### null safety:
-## [1.0.0+5] - 2020-07-21
 ### warning:
 Export files
+### [1.0.0+6] - 2021-12-20
+add Document
+### [1.0.0+7] - 2023-08-23
+fix day skyTrunkDay and earthBranchDay 
 
-[1.0.0+5] https://github.com/yangfu132/flutter_perpttual_calendar.gity
+[1.0.0+6] https://github.com/yangfu132/flutter_perpttual_calendar.gity

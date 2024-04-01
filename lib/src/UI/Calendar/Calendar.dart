@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 // import 'package:flutter_xiaoe/utils/ScreenUtil.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 import '../../Context/PCCContext.dart';
 import 'DayGridViewDemo.dart';
@@ -14,13 +12,13 @@ class Calendar extends StatefulWidget {
   final DateTime? endTime;
   final ValueChanged? onChange;
 
-  Calendar({
-    Key? key,
+  const Calendar({
+    super.key,
     this.initTime,
     this.firstTime,
     this.endTime,
     this.onChange,
-  }) : super(key: key);
+  });
 
   @override
   State<Calendar> createState() => _CalendarState();
