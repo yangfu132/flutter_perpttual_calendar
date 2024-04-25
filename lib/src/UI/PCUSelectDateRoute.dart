@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_perpttual_calendar/src/Business/Calendar/WHUCalendarItem.dart';
 
@@ -166,9 +165,7 @@ class _PCUSelectDateRouteState extends State<PCUSelectDateRoute> {
 
   void _onChange(WHUCalendarItem? dateItem) {
     if (null == dateItem) return;
-    if (kDebugMode) {
-      print('dateItem:${dateItem.dateStr}');
-    }
+    print('dateItem:${dateItem.dateStr}');
     DateTime dateTime = PWSDateTimeService.dateFromString(dateItem.dateStr!);
 
     _strDateBtn =

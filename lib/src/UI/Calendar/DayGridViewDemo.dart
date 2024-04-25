@@ -15,7 +15,6 @@ class DayGridView extends StatefulWidget {
   final ValueChanged? onChange;
 
   const DayGridView({super.key, 
-    Key? key,
     required this.initDate,
     required this.selectDate,
     required this.year,
