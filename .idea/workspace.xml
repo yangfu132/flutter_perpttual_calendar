@@ -5,14 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="faaf0726-5ad7-4cf4-ba29-0996395f1759" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/UI/Base/PCUDateTile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/UI/Base/PCUDateTile.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/UI/Base/PCUInfoWidget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/UI/Base/PCUInfoWidget.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/UI/Calendar/DayGridViewDemo.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/UI/Calendar/DayGridViewDemo.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/UI/Calendar/DayGridView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/UI/Calendar/DayGridView.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/UI/Calendar/PCUCalendarCell.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/UI/Calendar/PCUCalendarCell.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/UI/PCUSelectDateRoute.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/UI/PCUSelectDateRoute.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/UI/Calendar/PCUCalendarGridView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/UI/Calendar/PCUCalendarGridView.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,18 +35,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "feature__3.19.4",
-    "io.flutter.reload.alreadyRun": "true",
-    "settings.editor.selected.configurable": "flutter.settings",
-    "show.migrate.to.gradle.popup": "false"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature__3.19.4&quot;,
+    &quot;io.flutter.reload.alreadyRun&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;flutter.settings&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Flutter.example">
     <configuration name="example" type="FlutterRunConfigurationType" factoryName="Flutter">
       <option name="filePath" value="$PROJECT_DIR$/example/example.dart" />

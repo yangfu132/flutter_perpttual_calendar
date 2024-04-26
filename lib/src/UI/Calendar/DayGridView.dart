@@ -1,12 +1,7 @@
-// import 'package:flutter_xiaoe/utils/ScreenUtil.dart';
-// import 'package:flutter_xiaoe/utils/NetUtil.dart';
-// import 'package:flutter_xiaoe/config/Api.dart';
-// import 'package:flutter_xiaoe/config/Colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 import '../../Context/PCCContext.dart';
-// import 'dart:math' as math;
 import 'TimeUtil.dart';
 
 class DayGridView extends StatefulWidget {
@@ -17,7 +12,7 @@ class DayGridView extends StatefulWidget {
   final ValueChanged? onChange;
 
   const DayGridView({super.key, 
-    Key? key,
+    /*Key? key,*/
     /*required*/ required this.initDate,
     /*required*/ required this.selectDate,
     /*required*/ required this.year,
@@ -100,12 +95,11 @@ class _DayGridViewState extends State<DayGridView> {
               child: Container(
                   color: Colors.white,
                   alignment: Alignment.center,
-                  child: Container(
                     child: Text(
                       value.day.toString(),
                       style: const TextStyle(color: Colors.black12),
                     ),
-                  )),
+                  ),
             );
           }
         }

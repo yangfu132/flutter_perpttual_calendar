@@ -36,31 +36,28 @@ class _PCUCalendarWidgetState extends State<PCUCalendarGridView> {
     List? days = [];
     if (null != widget.dataDic) days = widget.dataDic!['dataArr'];
     List dayWidgets = days!.map((value) {
-      PCUCalendarCell cell = PCUCalendarCell(widgetHeight);
+      WHUCalendarItem dateItem = value as WHUCalendarItem;
+      PCUCalendarCell cell = PCUCalendarCell(widgetHeight,
+          lbl:dateItem.day < 0 ? '${-dateItem.day}' : '${dateItem.day}',
+          dbl:dateItem.holiday ?? dateItem.chineseCalendar,
+          isToday:dateItem.dateStr == widget.strCurDate,
+          isDayInCurMonth:dateItem.day >= 0,
+          dateItem:dateItem,
+          onChange:widget.onChange
+      );
       // cell.rowIndex = 1;
       // cell.total = days.length;
-      WHUCalendarItem dateItem = value as WHUCalendarItem;
-      if (null != dateItem.holiday) {
-        cell.dbl = dateItem.holiday;
-      } else {
-        cell.dbl = dateItem.chineseCalendar;
-      }
 
-      if (dateItem.dateStr == widget.strCurDate) {
-        cell.isToday = true;
-      } else {
-        cell.isToday = false;
-      }
 
-      if (dateItem.day < 0) {
-        cell.lbl = '${-dateItem.day}';
-        cell.isDayInCurMonth = false;
-      } else {
-        cell.lbl = '${dateItem.day}';
-        cell.isDayInCurMonth = true;
-      }
-      cell.dateItem = dateItem;
-      cell.onChange = widget.onChange;
+      // if (dateItem.day < 0) {
+      //   cell.lbl = '${-dateItem.day}';
+      //   cell.isDayInCurMonth = false;
+      // } else {
+      //   cell.lbl = '${dateItem.day}';
+      //   cell.isDayInCurMonth = true;
+      // }
+      // cell.dateItem = dateItem;
+      // cell.onChange = widget.onChange;
       return cell;
     }).toList();
     return dayWidgets as List<Widget>;

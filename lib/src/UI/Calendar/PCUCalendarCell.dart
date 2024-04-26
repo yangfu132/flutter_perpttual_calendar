@@ -7,12 +7,12 @@ import '../Base/PCUTriangleWidget.dart';
 
 class PCUCalendarCell extends StatefulWidget {
   const PCUCalendarCell(this.widgetHeight, {super.key,
-    this.lbl,
-    this.dbl,
+    required this.lbl,
+    required this.dbl,
     required this.isToday,
     required this.isDayInCurMonth,
-    this.dateItem,
-    this.onChange,
+    required this.dateItem,
+    required this.onChange,
   });
   final String? lbl;
   final String? dbl;
