@@ -12,4 +12,4 @@ fix day skyTrunkDay and earthBranchDay
 ### [1.0.0+8] - 2024-04-26
 Flutter Version 3.19.4
 
-[1.0.0+6] https://github.com/yangfu132/flutter_perpttual_calendar.gity
+[1.0.0+8] https://github.com/yangfu132/flutter_perpttual_calendar.gity
