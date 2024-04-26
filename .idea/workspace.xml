@@ -42,7 +42,7 @@
     &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;feature__3.19.4&quot;,
     &quot;io.flutter.reload.alreadyRun&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;flutter.settings&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;http.proxy&quot;,
     &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
   }
 }</component>

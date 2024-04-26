@@ -11,5 +11,7 @@ add Document
 fix day skyTrunkDay and earthBranchDay 
 ### [1.0.0+8] - 2024-04-26
 Flutter Version 3.19.4
+### [1.0.0+8] - 2024-04-26
+intl from ^0.19.0 to ^0.18.0
 
-[1.0.0+8] https://github.com/yangfu132/flutter_perpttual_calendar.gity
+[1.0.0+9] https://github.com/yangfu132/flutter_perpttual_calendar.gity
