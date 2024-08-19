@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_perpttual_calendar/src/Business/lunarContext.dart';
 import 'package:flutter_perpttual_calendar/src/UI/PCUSelectDateRoute.dart';
 
 
@@ -77,6 +78,14 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
+    //今天
+    //Lunar date = Lunar.fromDate(DateTime.now());
+
+    //指定阴历的某一天
+    Lunar lunarDate = Lunar.fromYmd(1986, 4, 21);
+    // print(lunarDate.toFullString());
+    // print(lunarDate.getSolar().toFullString());
+
     return Scaffold(
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
@@ -98,8 +107,11 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+             Text(
+              'Full:${lunarDate.toFullString()}',
+            ),
+            Text(
+              'SolarFull:${lunarDate.getSolar().toFullString()}',
             ),
             Text(
               '$_counter',
