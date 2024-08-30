@@ -15,4 +15,6 @@ Flutter Version 3.19.4
 intl from ^0.19.0 to ^0.18.0
 ### [1.0.0+10] - 2024-08-20
 add buddha business
-[1.0.0+10] https://github.com/yangfu132/flutter_perpttual_calendar.gity
+### [1.0.0+11] - 2024-08-30
+export buddha business
+[1.0.0+11] https://github.com/yangfu132/flutter_perpttual_calendar.gity
