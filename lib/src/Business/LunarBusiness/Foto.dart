@@ -128,6 +128,11 @@ class Foto {
     return false;
   }
 
+  bool isDayZhaiLei(){
+    String k = '${getMonth()}-${getDay()}';
+    return FotoUtil().isDayZhaiLei(k);
+  }
+
   String getXiu() {
     return FotoUtil.getXiu(getMonth(), getDay());
   }

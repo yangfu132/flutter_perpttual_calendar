@@ -17,4 +17,6 @@ intl from ^0.19.0 to ^0.18.0
 add buddha business
 ### [1.0.0+11] - 2024-08-30
 export buddha business
-[1.0.0+11] https://github.com/yangfu132/flutter_perpttual_calendar.gity
+### [1.0.0+12] - 2024-08-30
+add Lei Zhai
+[1.0.0+12] https://github.com/yangfu132/flutter_perpttual_calendar.gity

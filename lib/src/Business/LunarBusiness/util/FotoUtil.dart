@@ -435,4 +435,18 @@ class FotoUtil {
   static String getXiu(int month, int day) {
     return XIU_27[(XIU_OFFSET[month.abs() - 1] + day - 1) % XIU_27.length];
   }
+
+  bool isDayZhaiLei(String day) {
+    bool bResult = false;
+    List<FotoFestival>? data = FESTIVAL['day'];
+    if (null != data) {
+      for (FotoFestival value in data) {
+        if (_L == value) {
+          bResult = true;
+          break;
+        }
+      }
+    }
+    return bResult;
+  }
 }
